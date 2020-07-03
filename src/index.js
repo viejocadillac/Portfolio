@@ -1,8 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import * as serviceWorker from './serviceWorker';
+
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { faFacebookSquare, faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { faChevronLeft, faChevronUp, faPhone, faMapMarkerAlt, faBars } from '@fortawesome/free-solid-svg-icons'
+library.add(faChevronLeft, faChevronUp, faFacebookSquare, faInstagram, faPhone, faMapMarkerAlt, faBars)
 
 ReactDOM.render(
   <React.StrictMode>
