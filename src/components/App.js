@@ -6,7 +6,9 @@ import Container from './Container'
 import NavBar from './NavBar'
 import BigName from './BigName'
 import ToTop from './ToTop'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import ScrollButton from './ScrollButton'
+import ProyectosContainer from './ProyectosContainer'
+
 
 //import {useScrollRef, useViewportHeight, useResize} from '../hooks.js'
 
@@ -20,6 +22,11 @@ function App({className}) {
 
   const saludar = ()=>{
     window.scrollTo({ top: 4000, behavior: 'smooth' });
+  }
+
+
+  const scrollButtonHandler = ()=>{
+
   }
 
 
@@ -42,7 +49,7 @@ function App({className}) {
             </Fade>
           </div>
           
-          <button className="scroll-button"><FontAwesomeIcon icon="chevron-left" size="2x"/>Scroll</button>
+          <ScrollButton onClick={scrollButtonHandler}/>
         </Container>
       </Rectangulo>
 
@@ -52,12 +59,8 @@ function App({className}) {
         <Section>
           <Section.Title text={['Pro', 'yectos.']} />
           <Container>
-    
-            <Section.Body className="proyectos-container">
-              <div></div>
-              <div></div>
-              <div></div>
-              <div></div>
+            <Section.Body>
+              <ProyectosContainer />
             </Section.Body>
           </Container>
         </Section>
@@ -134,36 +137,7 @@ export default styled(App)`
     top:3rem;
   }
 
-  .scroll-button{
-    height: 30px;
-    position:absolute;
-    top:100%;
-    right: 0;
-    transform:translate(1.3em,-140%) rotate(-90deg);
-    background: none;
-    border:none;
-    color: White;
-    font-weight: 600;
-    line-height: 3em;
-    //animation: saltar 1s infinite;
 
-    &:hover {
-      cursor: pointer;
-    }
-
-    @keyframes saltar{
-      0% {
-        transform:translate(1.3em,-140%) translateZ(0) rotate(-90deg);
-      }
-      50%{
-        transform:translate(1.3em,-160%) translateZ(0) rotate(-90deg);
-      }
-      100%{
-        transform:translate(1.3em,-140%) translateZ(0) rotate(-90deg);
-      }
-    }
-    
-  }
 
   .button-dale {
     background: none;
@@ -233,20 +207,7 @@ export default styled(App)`
     min-height: 100vh;
   }
 
-  .proyectos-container {
-      margin-top: 2em;
-      display: grid;
-      grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
-      gap: 1em;
-
-      div {
-
-        height: 200px;
-        min-width: 200px;
-        background-color:grey;
-      }
-
-    }
+ 
 
     .sobre-mi{
       background-color:#303030;
@@ -260,6 +221,9 @@ export default styled(App)`
     gap: 2em;
     min-height: calc(100vh - 6.5rem - 4em);
     
+    @media (max-width: 500px) {
+      flex-direction: column;
+    }
     .perfil, .descripcion, .tecnologias {
       font-weight: 'Raleway', sans-serif;
       display: flex;
