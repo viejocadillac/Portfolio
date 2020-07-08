@@ -52,7 +52,7 @@ export default styled(ToTop)`
   z-index: 10;
   transition: right 0.5s ease-in-out;
   text-align: center;
-  color: #ef6408;
+  color: ${({theme}) => theme.colors.primario };
 
   &:hover {
     cursor: pointer;

@@ -1,9 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
+import Fade from 'react-reveal/Fade';
 
 import Container from './Container'
 
-import {useScrollRef, useResize} from '../hooks.js'
+import { useScrollRef, useResize } from '../hooks.js'
 
 
 const Nombre = styled.h1`
@@ -14,77 +15,80 @@ const Nombre = styled.h1`
 
 `
 
-const BigNombre = ({className})=>{
-    return (
-        <div className={className}>
-            <span className="nombre-grande">Mathias</span>
-            <span className="apellido-grande">Moreira</span>
-        </div>
-    )
+const BigNombre = ({ className }) => {
+  return (
+    <div className={className}>
+      <span className="nombre-grande">Mathias</span>
+      <span className="apellido-grande">Moreira</span>
+    </div>
+  )
 
 }
 
 const fromLeft = (from, progress, to, delay) => {
-  return `transform: translate(${Math.min(from + (Math.max(-delay + progress, 0)),to)}px, 0)`
+  return `transform: translate(${Math.min(from + (Math.max(-delay + progress, 0)), to)}px, 0)`
 }
 
 
-const NavBar = ({className}) => {
+const NavBar = ({ className, toggleTheme }) => {
+
+
   const refNombre = React.useRef(null)
 
   let rect;
   let from;
 
-  
 
-  React.useLayoutEffect(()=>{
-    // Se ejecuta al montar para acomodar el componente fuera del borde
-    rect = refNombre.current.getBoundingClientRect();
-    from = -rect.left - refNombre.current.offsetWidth 
-    refNombre.current.style = `transform: translateX(${from}px)`
-  })
 
-  useResize((width)=>{
-    
-    rect = refNombre.current.getBoundingClientRect();
-    from = -rect.left - refNombre.current.offsetWidth
 
-    console.log(from)
-    refNombre.current.style = `transform: translateX(${from}px)`
-  });
+  const SCROLL_DELAY = 150
 
-  const SCROLL_DELAY = 100
+  const [showNombre, setShowNombre] = React.useState(false)
   useScrollRef((scrollPos) => {
-    refNombre.current.style = fromLeft(from, scrollPos, 0, SCROLL_DELAY)
+    if (scrollPos > SCROLL_DELAY && !showNombre) {
+      setShowNombre(true)
+    }
+
+    if (scrollPos < SCROLL_DELAY && showNombre) {
+      setShowNombre(false)
+    }
+
   })
 
- 
 
-    
+
+
   return (
-      <header className={className}>
-        <Container className="content">
-          <Nombre  ref={refNombre}>Mathias Moreira</Nombre>
+    <header className={className}>
+      <Container className="content">
+        <Fade delay={0} duration={500} left big collapse when={showNombre}>
+          <div>
+            <Nombre >Mathias Moreira</Nombre>
+            <p>Desarrollador</p>
+          </div>
+
+        </Fade>
 
 
 
-          <nav>
-            <ul className="links">
-                <li className="link">Proyectos</li>
-                <li className="link">Sobre mi</li>
-                <li className="link">Contacto</li>
-            </ul>
-          </nav>
+        <nav>
+          <ul className="links">
+            <li className="link">Proyectos</li>
+            <li className="link">Sobre mi</li>
+            <li className="link">Contacto</li>
+            <li className="link modo" onClick={toggleTheme}>Modo<div className="circle" ></div></li>
+          </ul>
+        </nav>
 
-        </Container>
+      </Container>
     </header>
   )
 }
 
-  export default styled(NavBar)`
+export default styled(NavBar)`
     font-family: 'Raleway', sans-serif;
-    color: #707070;
-    background-color: white;
+    color: ${({ theme }) => theme.colors.primario};
+    background-color: ${({ theme }) => theme.colors.fondo};
     position: fixed;
     width: 100%;
     z-index:2;
@@ -93,11 +97,26 @@ const NavBar = ({className}) => {
     justify-content: space-between;
     align-items: center;
 
+    p {
+      margin: 0;
+      color: ${({theme})=> theme.colors.texto}
+    }
+
     .content {
       display: flex;
       justify-content: space-between;
       align-items: center;
 
+    }
+
+    .circle {
+      background-color: ${({ theme }) => theme.colors.otherThemeBackground};
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      margin-left: 0.4em;
+
+      
     }
 
 
@@ -109,6 +128,17 @@ const NavBar = ({className}) => {
   .link {
       margin-right: 1em;
       font-weight: 600;
+      color: ${({ theme }) => theme.colors.texto};
+  }
+  .modo{
+    display:flex;
+    align-items: center;
+    margin-left:1em;
+
+    &:hover {
+      cursor: pointer;
+    }
+    
   }
 
   .link:last-child {

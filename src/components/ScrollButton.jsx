@@ -9,12 +9,13 @@ const ScrollButton = ({className, onClick}) => {
 }
 
 export default styled(ScrollButton)`
-  
+    display: flex;
+    align-items: center;
     height: 30px;
     position:absolute;
     top:100%;
     right: 0;
-    transform:translate(1.3em,-140%) rotate(-90deg);
+    transform:translate(1.3em,-190%) rotate(-90deg);
     background: none;
     border:none;
     color: White;
@@ -28,13 +29,13 @@ export default styled(ScrollButton)`
 
     @keyframes saltar{
       0% {
-        transform:translate(1.3em,-140%) translateZ(0) rotate(-90deg);
-      }
-      50%{
         transform:translate(1.3em,-160%) translateZ(0) rotate(-90deg);
       }
+      50%{
+        transform:translate(1.3em,-190%) translateZ(0) rotate(-90deg);
+      }
       100%{
-        transform:translate(1.3em,-140%) translateZ(0) rotate(-90deg);
+        transform:translate(1.3em,-160%) translateZ(0) rotate(-90deg);
       }
     }
     

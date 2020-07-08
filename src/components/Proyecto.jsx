@@ -1,11 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
+import Pulse from 'react-reveal/Pulse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const Proyecto = ({className, nombre, descripcion, link}) => {
     return (
-        <article className={className}>
-            <img  ></img>
+     
+            <article className={className}>
+            <img src={link}></img>
 
             <header>
                 <h1>{nombre}</h1>
@@ -15,6 +17,11 @@ const Proyecto = ({className, nombre, descripcion, link}) => {
          
 
         </article>
+
+
+
+
+        
     )
 }
 
@@ -30,11 +37,14 @@ export default styled(Proyecto)`
     align-items: center;
     position:relative;
     grid-auto-flow: dense;
+
+
    
 
     &:nth-child(2n) {
         img {
             grid-column: 2;
+           
         }
     }
 
@@ -72,6 +82,7 @@ export default styled(Proyecto)`
         min-height: 200px;
         height: 100%;
         background-color: #303030;
+       
 
     }
 

@@ -13,6 +13,7 @@ const Section = styled(({className, children}) => {
 
 })`
     min-height: 100vh;
+    background-color: ${({theme})=>theme.colors.fondo};
 `
 
 
@@ -39,7 +40,7 @@ Section.Title = styled(({className, text})=>{
     text-transform: uppercase;
     top: 3rem;
     padding-top: 0.5rem;
-    background-color: white;
+    background-color: ${({theme})=>theme.colors.fondo};
     width: 100%;
     z-index: 1;
 

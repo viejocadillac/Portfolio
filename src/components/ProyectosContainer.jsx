@@ -41,7 +41,7 @@ const ProyectosContainer = ({className})=>{
         <div className={className}>
             {
                  proyectos.map((proyecto) => {
-                    return <Proyecto nombre={proyecto.nombre} descripcion={proyecto.descripcion} link={proyecto.link}/>
+                    return <Proyecto key={proyecto.nombre} nombre={proyecto.nombre} descripcion={proyecto.descripcion} link={proyecto.link}/>
                 })
             }
  
@@ -52,6 +52,7 @@ const ProyectosContainer = ({className})=>{
 export default styled(ProyectosContainer)`
     //margin-top: 2em;
     grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
+    //background-color: ${({theme})=>theme.colors.fondo};
 
 
     &:nth-child(2n + 2) > article:first-child {
