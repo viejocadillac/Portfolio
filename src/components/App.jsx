@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
+import styled, {createGlobalStyle} from 'styled-components';
+
 import Fade from 'react-reveal/Fade';
 import Pagina from './Pagina';
 import Section from './Section';
@@ -8,6 +9,13 @@ import Container from './Container';
 import Portada from './Portada';
 import Proyectos from '../sections/Proyectos';
 import SobreMi from '../sections/SobreMi';
+import Contacto from '../sections/Contacto';
+import GlobalStyles from './GlobalStyles';
+
+
+
+
+
 
 const Spacer = styled.div`
   height: calc(100vh - 4em);
@@ -18,28 +26,27 @@ const Spacer = styled.div`
 function App({ className }) {
 
   return (
-    <Pagina className={className}>
-      <Portada />
+    <>
+      <GlobalStyles />
+      <Pagina className={className}>
+        <Portada />
 
-      <Spacer />
+        <Spacer />
 
-      <Proyectos />
+        <Proyectos />
 
-      <Spacer />
+        <Spacer />
 
-      <SobreMi />
+        <SobreMi />
 
-      <Spacer />
+        <Spacer />
 
-      <Section>
-        <Section.Title text={['Con', 'tacto.']} />
-        <Container>
-          <Section.Body className="proyectos-container" />
-        </Container>
-      </Section>
+        <Contacto />
 
+      
 
-    </Pagina>
+      </Pagina>
+    </>
   );
 }
 

@@ -4,22 +4,71 @@ import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import Container from './Container';
 import ScrollButton from './ScrollButton';
-import BigName from './BigName';
-import NavBar from './NavBar';
-import ToTop from './ToTop';
 
 const Rectangulo = styled.div`
-  background-color: #303030;
-  height: calc(100vh - 5em);
-  width: calc(100% - 4em);
-  position: relative;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin: 0 auto;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+ 
+  height: calc(100vh - 14em);
+  max-width: 960px;
+  width: calc(100vw - 20rem);
+  
+  transform: translate(-50%, -50%);
 
-  background-color: #303030;
-    height: calc(100vh - 2em);
-    margin: 0 auto;
-    width: calc(100% - 4em );
-    display:flex;
-    justify-content: space-between;
+
+ 
+
+  h2 {
+    text-align: center;
+    font-weight: 800;
+    font-size: 5em;
+    margin: 0;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 2;
+    color: ${({theme})=>theme.colors.primario};
+    transition: transform 0.5s ease-in-out;
+    &:hover {
+      transform: scale(1.1) translateZ(0);
+    }
+  }
+ 
+
+  /* Rectangulo de borde blanco */
+  &:after {
+    content: "";
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: calc(100% / 3);
+    height: calc(100% + 4em);
+    border: 15px solid white;
+  }
+
+  /* Imagen de fondo */
+  &:before {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background-image: url('./fondo_portada1.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.5;
+  }
+  
+  
 `;
 
 const Portada = ({ className }) => {
@@ -29,47 +78,75 @@ const Portada = ({ className }) => {
   };
 
   return (
-  <main className={className}>
-    <Rectangulo className="rectangulo">
+    <main className={className}>
+
+
+
       <Container className="flex-container">
-        <BigName />
+        <Rectangulo className="rectangulo">
+          <h2>Proyectos.</h2>
+          <h2>Sobre mi.</h2>
+          <h2>Contacto.</h2>
+        </Rectangulo>
 
-        <div className="wrapper">
-          <Fade>
-            <h1>A un paso de que tus ideas se hagan realidad.</h1>
-            <p>O de contratarme.</p>
 
-            <button type="button" className="button-dale">Dale!</button>
-          </Fade>
-        </div>
-
-        <ScrollButton onClick={scrollButtonHandler} />
       </Container>
-    </Rectangulo>
-  </main>
-)};
+      <ScrollButton onClick={scrollButtonHandler} />
+
+
+
+    </main>
+  )
+};
 
 export default styled(Portada)`
-background-color: ${({theme})=> theme.colors.fondo};
+background-color: ${({ theme }) => theme.colors.fondo};
+min-height: 100vh;
+
+position: relative;
+display: flex;
+justify-content: center;
+align-items: center;
+
+.caracter {
+  opacity: 0.1;
+}
   .flex-container{
+    
     width: 100%;
     display:flex;
     position:relative;
     justify-content:space-between;
     align-items: center;
-    text-align: right;
+    
+    
+    
 
     .wrapper {
       color: white;
+      padding: 2em;
+      background-color: #303030;
+      position: relative;
+      top: 100px;
+      z-index: 4;
       font-family: 'Raleway', sans-serif;
-      width: 100%;
+      width: 80%;
+      margin-left: 10em;
+    
       h1 {
         margin: 0;
+        font-size: 1.5em;
+        font-weight: 300;
       }
 
       p {
         color: #ef6408;
+        font-size: 0.9em;
         font-weight: 600;
+      }
+
+
+      
       }
     }
   }

@@ -12,7 +12,7 @@ const SobreMi = ({ className }) => (
     <Section.Body className="sobre-mi">
       <Container className="sobremi-container">
         <div className="perfil">
-          <div className="imagen-perfil" />
+          <div className="g-circle imagen-perfil" />
         </div>
 
         <div className="descripcion">
@@ -36,7 +36,7 @@ const SobreMi = ({ className }) => (
           </p>
         </div>
 
-        <div className="tecnologias">
+        <div className="g-grid tecnologias">
             {
                 [
                     'React',
@@ -85,7 +85,6 @@ export default styled(SobreMi)`
         height: 100px;
         background-image: url('./perfil.jpg');
         background-size: cover;
-        border-radius: 50%;
         border: 4px solid white;
       }
 
@@ -113,13 +112,11 @@ export default styled(SobreMi)`
         a {
           color: white;
           font-weight: 700;
-          text-decoration: none;
         }
       }
 
       .tecnologias {
         border-left: 3px solid #ef6408;
-        display: grid;
         grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
         min-width: 200px;
         flex-grow: 1;
