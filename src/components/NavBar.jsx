@@ -4,7 +4,7 @@ import Fade from 'react-reveal/Fade';
 
 import Container from './Container'
 
-import { useScrollRef, useResize } from '../hooks.js'
+import { useToggleShowOn } from '../hooks.js'
 
 
 const Nombre = styled.h1`
@@ -32,54 +32,32 @@ const fromLeft = (from, progress, to, delay) => {
 
 const NavBar = ({ className, toggleTheme }) => {
 
-
-  const refNombre = React.useRef(null)
-
-  let rect;
-  let from;
-
-
-
-
   const SCROLL_DELAY = 150
-
-  const [showNombre, setShowNombre] = React.useState(false)
-  useScrollRef((scrollPos) => {
-    if (scrollPos > SCROLL_DELAY && !showNombre) {
-      setShowNombre(true)
-    }
-
-    if (scrollPos < SCROLL_DELAY && showNombre) {
-      setShowNombre(false)
-    }
-
-  })
-
-
-
+  const showNombre = useToggleShowOn(SCROLL_DELAY, false)
 
   return (
     <header className={className}>
       <Container className="content">
         <Fade delay={0} duration={500} left big collapse when={showNombre}>
-          <div>
+          <div >
             <Nombre >Mathias Moreira</Nombre>
             <p>Desarrollador</p>
           </div>
 
         </Fade>
 
-
-
-        <nav>
-          <ul className="links">
-            <li className="link">Proyectos</li>
-            <li className="link">Sobre mi</li>
-            <li className="link">Contacto</li>
-            <li className="link modo" onClick={toggleTheme}>Modo<div className="circle" ></div></li>
-          </ul>
-        </nav>
-
+        <div className="flex">
+          <Fade when={showNombre}>
+            <nav>
+              <ul className="links">
+                <li >Proyectos</li>
+                <li >Sobre mi</li>
+                <li >Contacto</li>
+              </ul>
+            </nav>
+          </Fade>
+          <button className="modo" onClick={toggleTheme}>Modo<div className="circle" ></div></button>
+        </div>
       </Container>
     </header>
   )
@@ -90,12 +68,20 @@ export default styled(NavBar)`
     color: ${({ theme }) => theme.colors.primario};
     background-color: ${({ theme }) => theme.colors.fondo};
     position: fixed;
-    width: 100%;
+    width: 100vw;
     z-index:2;
     top: 0;
     left: 0;
     justify-content: space-between;
     align-items: center;
+
+    .flex {
+      display:flex;
+    }
+
+    nav {
+      display: flex;
+    }
 
     p {
       margin: 0;
@@ -115,25 +101,39 @@ export default styled(NavBar)`
       height: 1em;
       border-radius: 50%;
       margin-left: 0.4em;
+     }
 
-      
+
+  ul.links {
+    list-style: none;
+    display:flex;
+
+    & > li {
+      margin-right: 1em;
+      font-weight: 500;
+      color: ${({ theme }) => theme.colors.texto};
+
+      &:last-child {
+        margin-right: 0em;
+      }
     }
-
-
-  .links {
-      list-style: none;
-      display:flex;
   }
+
 
   .link {
       margin-right: 1em;
-      font-weight: 600;
+      font-weight: 500;
       color: ${({ theme }) => theme.colors.texto};
   }
+
   .modo{
     display:flex;
     align-items: center;
     margin-left:1em;
+    float: right;
+    
+    background: none;
+    border: none;
 
     &:hover {
       cursor: pointer;
@@ -141,9 +141,7 @@ export default styled(NavBar)`
     
   }
 
-  .link:last-child {
-      margin-right: 0em;
-  }
+
 
 
 `;

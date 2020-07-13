@@ -1,17 +1,24 @@
-import { useLayoutEffect, useState } from 'react';
+import { useLayoutEffect, useEffect, useState } from 'react';
 
-const useScrollRef = (cb) => {
-  const handleScroll = () => {
-    cb(window.pageYOffset);
-  };
+/**
+ * 
+ * @param {function} callback Funcion llamada cuando se hace scroll
+ */
+const useScroll = (callback) => {
 
-  useLayoutEffect(() => {
-    document.addEventListener('scroll', handleScroll);
-    return () => {
-      document.removeEventListener('scroll', handleScroll);
-    };
-  });
-};
+  const onScroll = (event) => {
+      // Cross browser support.
+      const scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
+      callback(scrollPos);
+  }
+
+  useEffect(() => {
+      document.addEventListener('scroll', onScroll);
+      return () => {
+          document.removeEventListener('scroll', onScroll);
+      }
+  })
+}
 
 const useResize = (cb) => {
   const handleResize = (event) => {
@@ -60,6 +67,23 @@ const useViewportWidth = () => {
   return viewportWidth;
 };
 
+
+const useToggleShowOn = (pixels, initialShow) => {
+  const [show, setShow] = useState(initialShow)
+  
+  useScroll((scrollPos) => {
+    if (scrollPos > pixels && !show) {
+      setShow(true)
+    }
+
+    if (scrollPos < pixels && show) {
+      setShow(false)
+    }
+
+  })
+  return show
+}
+
 export {
-  useScrollRef, useViewportHeight, useViewportWidth, useResize,
+  useScroll, useViewportHeight, useViewportWidth, useResize, useToggleShowOn
 };

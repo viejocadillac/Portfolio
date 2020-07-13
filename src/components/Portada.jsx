@@ -5,23 +5,21 @@ import Fade from 'react-reveal/Fade';
 import Container from './Container';
 import ScrollButton from './ScrollButton';
 
+import { useScroll, useResize, useToggleShowOn } from '../hooks.js'
+
+
 const Rectangulo = styled.div`
-  position: absolute;
+  position: fixed;
   top: 50%;
   left: 50%;
   margin: 0 auto;
   display:flex;
   flex-direction: column;
   justify-content: center;
- 
   height: calc(100vh - 14em);
   max-width: 960px;
   width: calc(100vw - 20rem);
-  
   transform: translate(-50%, -50%);
-
-
- 
 
   h2 {
     text-align: center;
@@ -31,7 +29,7 @@ const Rectangulo = styled.div`
     text-transform: uppercase;
     position: relative;
     z-index: 2;
-    color: ${({theme})=>theme.colors.primario};
+    color: ${({ theme }) => theme.colors.primario};
     transition: transform 0.5s ease-in-out;
     &:hover {
       transform: scale(1.1) translateZ(0);
@@ -39,22 +37,72 @@ const Rectangulo = styled.div`
   }
  
 
-  /* Rectangulo de borde blanco */
-  &:after {
-    content: "";
-    position: absolute;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    width: calc(100% / 3);
-    height: calc(100% + 4em);
-    border: 15px solid white;
-  }
 
-  /* Imagen de fondo */
-  &:before {
-    content: "";
+`;
+
+const Portada = ({ className }) => {
+
+  const SCROLL_DELAY = 200
+
+  const showTitulares = useToggleShowOn(SCROLL_DELAY, false)
+
+
+
+  const scrollButtonHandler = () => {
+
+  };
+
+  const refRectBlanco = React.useRef()
+  const refImagen = React.useRef()
+
+
+  useScroll((scrollPos) => {
+    window.requestAnimationFrame(()=>{
+     
+      refImagen.current.style.opacity = 1 / (scrollPos * 0.01)
+      if(scrollPos > 400) {
+        refImagen.current.style.opacity = 0
+        refRectBlanco.current.style.opacity = 0
+      }else {
+        refRectBlanco.current.style.opacity = 1
+      }
+    })
+    
+  })
+
+  return (
+    <main className={className}>
+      <Container className="container-portada">
+        <Rectangulo className="rectangulo">
+          <div ref={refImagen} className="imagen"></div>
+          <div ref={refRectBlanco} className="rectangulo-blanco"></div>
+          <Fade duration={2000} left big collapse cascade when={!showTitulares}>
+            <h2>Proyectos.</h2>
+          </Fade>
+
+          <Fade duration={2000} big collapse cascade when={!showTitulares}>
+            <h2>Sobre mi.</h2>
+          </Fade>
+
+          <Fade duration={2000} right big collapse cascade when={!showTitulares}>
+            <h2>Contacto.</h2>
+          </Fade>
+        </Rectangulo>
+        <ScrollButton className="scroll-button" onClick={scrollButtonHandler} />
+      </Container>
+    </main>
+  )
+};
+
+export default styled(Portada)`
+  background-color: ${({ theme }) => theme.colors.fondo};
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .imagen {
     position: absolute;
     z-index: 1;
     top:50%;
@@ -65,106 +113,36 @@ const Rectangulo = styled.div`
     background-image: url('./fondo_portada1.jpg');
     background-size: cover;
     background-position: center;
+    transition: opacity 1s ease;
     opacity: 0.5;
+
   }
-  
-  
-`;
 
-const Portada = ({ className }) => {
+  .rectangulo-blanco {
+    position: absolute;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: calc(100% / 3);
+    height: calc(100% + 4em);
+    border: 15px solid white;
+    transition: opacity 1s ease;
+  }
 
-  const scrollButtonHandler = () => {
+  .caracter {
+    opacity: 0.1;
+  }
 
-  };
-
-  return (
-    <main className={className}>
-
-
-
-      <Container className="flex-container">
-        <Rectangulo className="rectangulo">
-          <h2>Proyectos.</h2>
-          <h2>Sobre mi.</h2>
-          <h2>Contacto.</h2>
-        </Rectangulo>
-
-
-      </Container>
-      <ScrollButton onClick={scrollButtonHandler} />
-
-
-
-    </main>
-  )
-};
-
-export default styled(Portada)`
-background-color: ${({ theme }) => theme.colors.fondo};
-min-height: 100vh;
-
-position: relative;
-display: flex;
-justify-content: center;
-align-items: center;
-
-.caracter {
-  opacity: 0.1;
-}
-  .flex-container{
-    
+  .container-portada{
     width: 100%;
-    display:flex;
     position:relative;
-    justify-content:space-between;
-    align-items: center;
-    
-    
-    
-
-    .wrapper {
-      color: white;
-      padding: 2em;
-      background-color: #303030;
-      position: relative;
-      top: 100px;
-      z-index: 4;
-      font-family: 'Raleway', sans-serif;
-      width: 80%;
-      margin-left: 10em;
-    
-      h1 {
-        margin: 0;
-        font-size: 1.5em;
-        font-weight: 300;
-      }
-
-      p {
-        color: #ef6408;
-        font-size: 0.9em;
-        font-weight: 600;
-      }
-
-
-      
-      }
-    }
+    margin: 0 auto;
   }
 
-  .button-dale {
-    background: none;
-    background-color: white;
-    border: none;
-    line-height: 2em;
-    border-radius: 1.2em;
-    font-size: 1.2em;
-    padding: 0.2em 1em;
-    color: #ef6408;
-    font-weight: 700;
-    font-family: 'Raleway', sans-serif;
-    &:hover{
-      cursor: pointer;
-    }
+  .scroll-button {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
-
 `;
