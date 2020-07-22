@@ -4,6 +4,7 @@ let MODE = LIGHT ? 'light' : 'dark'
 
 const common = {
     breakpoints:{
+        md: '800px',
 
     },
 }
@@ -11,14 +12,18 @@ const common = {
 const lightTheme = {
     name: 'light',
     colors: {
-        // Azul
-        primario: '#ef6408',
-        // Blanco
-        fondo: 'White',
-        // Gris claro
-        claro: '#707070',
-        fondoNav: 'White',
-        texto: '#707070',
+        primario: '#5ABFAD',
+        sectionTitle: '#AADEDC',
+        navLinks: '#7EADBF',
+        accent: '#F27E63',
+        fondo1: 'White',
+        claro: '#FCFFE5',
+        oscuro: '#233B4A',
+        navBarBackground:'#FCFFE5',
+        navBarText:'#233B4A',
+        overlay: '#5ABFAD',
+        sectionTitle: '#5ABFAD',
+        body:'white',
 
     }
 }
@@ -26,14 +31,16 @@ const lightTheme = {
 const darkTheme = {
     name: 'dark',
     colors:{
-        // Naranja
-        primario: '#ef6408',
-        // Casi Negro
-        fondo: '#303035',
-        // Gris claro
-        claro: '#707070',
-        fondoNav: '#101010',
-        texto: 'White',
+        primario: '#5ABFAD',
+        accent: '#F27E63',
+        fondo: '#233B4A',
+        claro: '#FCFFE5',
+        navBarBackground:'#233B4A',
+        navBarText:'#FCFFE5',
+        oscuro: '#233B4A',
+        overlay: '#233B4A',
+        sectionTitle: '#FCFFE5',
+        body: '#233B4A',
 
     },
 

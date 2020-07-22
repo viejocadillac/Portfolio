@@ -50,14 +50,8 @@ const ProyectosContainer = ({className})=>{
 }
 
 export default styled(ProyectosContainer)`
-    //margin-top: 2em;
-    grid-template-columns: repeat( auto-fit, minmax(250px, 1fr) );
-    //background-color: ${({theme})=>theme.colors.fondo};
-
-
-    &:nth-child(2n + 2) > article:first-child {
-        grid-column: 2;
-    }
-
-      
+    margin-bottom: 4rem;
+    display: grid;
+    grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+    gap: 1rem;      
 `

@@ -1,16 +1,19 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import styled from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 import Section from '../components/Section';
 import Container from '../components/Container';
 
 
 
-const SobreMi = ({ className }) => (
-    <Section className={className}>
-    <Section.Title text={['Sobre', 'mi.']} />
+const SobreMi = ({ className }) => { 
+  const theme = React.useContext(ThemeContext)
+  
+  return (
+    <Section className={className} backgroundColor={theme.colors.primario}>
+    <Section.Title text="Sobre mi." />
     <Section.Body className="sobre-mi">
-      <Container className="sobremi-container">
+      <Container >
         <div className="perfil">
           <div className="g-circle imagen-perfil" />
         </div>
@@ -27,43 +30,49 @@ const SobreMi = ({ className }) => (
             <b>muy motivado a desarrollar otra de mis pasiones; la  programación.</b>
             Para esto cuento con un gran desempeño
             {' '}
-            <b>autodidacta</b>
-            , manejando Javascript, HTML, CSS, React, Node, Webpack, Git, etc.
+            <b>autodidacta.</b>
+            
             El último tiempo, decidí formalizar mis conocimientos siendo parte del programa de
             {' '}
             <a href="#">Jóvenes a Programar</a>
             .
           </p>
+
+          <div className="container-tecnologias">
+            <p>Algunas de las tecnologias que manejo son:</p>
+            <div className="tecnologias">
+              <span className="tecnologia">Sass</span>
+              <span className="tecnologia">React</span>
+              <span className="tecnologia">Git</span>
+              <span className="tecnologia">JavaScript</span>
+              <span className="tecnologia">Node</span>
+              <span className="tecnologia">Html</span>
+              <span className="tecnologia">Css</span>
+              <span className="tecnologia">Node</span>
+            </div>
+          </div>
         </div>
 
-        <div className="g-grid tecnologias">
-            {
-                [
-                    'React',
-                    'Node',
-                    'Css',
-                    'Html',
-                    'Javascript',
-                    'Scss',
-                ].map((tecnologia) => <span className="tecnologia">{tecnologia}</span>)
-            }
-        </div>
+    
       </Container>
     </Section.Body>
 
   </Section>
 
-);
+)
+};
 
 export default styled(SobreMi)`
+clip-path: polygon(100% 0, 100% 90%, 0 100%, 0 100px);
+padding-bottom: 8rem;
+
+   
+  
+
 
 .sobre-mi {
-    padding-top: 4em;
-    background-color:#303030;
-}
-
-.sobremi-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
     gap: 2em;
     min-height: calc(100vh - 6.5rem - 4em);
@@ -75,6 +84,7 @@ export default styled(SobreMi)`
       display: flex;
       align-items: center;
       flex-grow: 1;
+      color: ${({theme})=> theme.colors.oscuro};
     }
 
     .imagen-perfil {
@@ -95,39 +105,74 @@ export default styled(SobreMi)`
       }
 
       .descripcion {
-        color: white;
+     
         flex-direction: column;
-        align-items: start;
+        align-items: center;
         padding: 0 1em;
+        text-align: center;
 
         .titulo {
           font-size: 2em;
+          width: min(100%, 23ch);
+          margin-bottom: 8rem;
         }
 
         p {
-          color: white;
-          line-height: 1.5em;
+          max-width: 50ch;
+          line-height: 2em;
         }
 
         a {
-          color: white;
+        
           font-weight: 700;
         }
       }
 
+      .container-tecnologias {
+        display: flex;
+        align-items:center;
+        flex-direction:column;
+        margin-top: 5rem;
+        
+        
+
+
+         p {
+           margin: 0;
+           font-weight: 600;
+         }
+
+         div {
+       
+           display: flex;
+           flex-wrap: wrap;
+
+         }
+      }
+
       .tecnologias {
-        border-left: 3px solid #ef6408;
-        grid-template-columns: repeat(auto-fit, minmax(7em, 1fr));
-        min-width: 200px;
-        flex-grow: 1;
+        margin-top: 1.5rem;
+        max-width: 300px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        text-align: center;
+      
+      
 
    
         .tecnologia {
-   
-          color: white;
-          font-weight: 600;
+          box-sizing: border-box;
+          background-color: ${({theme})=> theme.colors.oscuro};
+          font-size: 0.8em;
+     
+          font-weight: 500;
           margin: 0.5em;
+          margin-top: 0;
+          padding: 0.2em 1.5em;
+          border-radius: 0.7em;
           text-align:center;
+          color: ${({theme})=> theme.colors.claro};
           
 
         }

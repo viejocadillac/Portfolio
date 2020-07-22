@@ -13,14 +13,16 @@ const GlobalStyles = createGlobalStyle`
   display:grid;
 }
 
-.g-center-positioned {
-
-}
 
 
 /* Estilos */
+
+body {
+  background-color: ${({theme})=>theme.colors.body};
+}
 a {
     text-decoration: none;
+    color: none;
 }
 
 .g-circle {

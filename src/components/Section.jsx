@@ -1,8 +1,5 @@
 import React from 'react';
-import Fade from 'react-reveal/Fade'
 import styled from 'styled-components';
-
-import Container from './Container'
 
 const Section = styled(({className, children}) => {
     return (
@@ -13,49 +10,25 @@ const Section = styled(({className, children}) => {
 
 })`
     min-height: 100vh;
-    background-color: ${({theme})=>theme.colors.fondo};
+    background-color: ${({backgroundColor}) => backgroundColor};
+    padding-top: 7rem;
+    
 `
 
 
 Section.Title = styled(({className, text})=>{
     return (
         <header className={className}>
-            
-            <Container className="title-container">
-                <Fade left>
-                    {
-                        text.map((line)=> <span className="line">{line}</span> )
-                    }
-                </Fade>
-            </Container>
+            <h1>{text}</h1>
         </header>
     )
 })`
-
-    font-weight: 800;
-    font-size: 4em;
-    color: #ef6408; 
-    font-family: 'Raleway', sans-serif;
-    position: sticky;
-    text-transform: uppercase;
-    top: 3rem;
-    padding-top: 0.5rem;
-    background-color: ${({theme})=>theme.colors.fondo};
-    width: 100%;
-    z-index: 1;
-
-    .title-container {
-        margin: 0 auto;
-        padding-bottom: 1rem;
-    }
-
-    * {
-        display:block;
-        line-height: 0.8em;
-        margin: 0;
-    }
-
-    
+   
+    color: ${({theme}) => theme.colors.sectionTitle};
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 7rem;
+  
 `
 
 Section.Body = styled(({className, children})=>{
@@ -65,6 +38,7 @@ Section.Body = styled(({className, children})=>{
         </div>
     )
 })`
+width: 100%;
 
   
 `

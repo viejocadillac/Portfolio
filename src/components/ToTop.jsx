@@ -15,7 +15,6 @@ const ToTop = ({className}) => {
     const scrollListener = () => {
       scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
       if(scrollPos > vh) {
-        console.log('scroll')
         ref.current.style = "right: 0px"
       }else {
         ref.current.style = "right: -50px"

@@ -12,22 +12,12 @@ const Nombre = styled.h1`
     margin: 0;
     font-size: 1.5em;
     line-height: 1em;
-
+    color: ${({theme})=> theme.colors.accent};
 `
 
-const BigNombre = ({ className }) => {
-  return (
-    <div className={className}>
-      <span className="nombre-grande">Mathias</span>
-      <span className="apellido-grande">Moreira</span>
-    </div>
-  )
 
-}
 
-const fromLeft = (from, progress, to, delay) => {
-  return `transform: translate(${Math.min(from + (Math.max(-delay + progress, 0)), to)}px, 0)`
-}
+
 
 
 const NavBar = ({ className, toggleTheme }) => {
@@ -38,13 +28,10 @@ const NavBar = ({ className, toggleTheme }) => {
   return (
     <header className={className}>
       <Container className="content">
-        <Fade delay={0} duration={500} left big collapse when={showNombre}>
           <div >
             <Nombre >Mathias Moreira</Nombre>
             <p>Desarrollador</p>
           </div>
-
-        </Fade>
 
         <div className="flex">
           <Fade when={showNombre}>
@@ -64,14 +51,16 @@ const NavBar = ({ className, toggleTheme }) => {
 }
 
 export default styled(NavBar)`
+box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
-    color: ${({ theme }) => theme.colors.primario};
-    background-color: ${({ theme }) => theme.colors.fondo};
+    color: ${({ theme }) => theme.colors.navBarText};
+    background-color: ${({ theme }) => theme.colors.navBarBackground};
     position: fixed;
     width: 100vw;
-    z-index:2;
+    z-index:4;
     top: 0;
     left: 0;
+    padding: 1rem 0;
     justify-content: space-between;
     align-items: center;
 
@@ -85,7 +74,7 @@ export default styled(NavBar)`
 
     p {
       margin: 0;
-      color: ${({theme})=> theme.colors.texto}
+      color: ${({theme})=> theme.colors.navBarText}
     }
 
     .content {
@@ -95,13 +84,7 @@ export default styled(NavBar)`
 
     }
 
-    .circle {
-      background-color: ${({ theme }) => theme.colors.otherThemeBackground};
-      width: 1em;
-      height: 1em;
-      border-radius: 50%;
-      margin-left: 0.4em;
-     }
+  
 
 
   ul.links {
@@ -111,7 +94,8 @@ export default styled(NavBar)`
     & > li {
       margin-right: 1em;
       font-weight: 500;
-      color: ${({ theme }) => theme.colors.texto};
+      font-size: 1rem;
+      color: ${({ theme }) => theme.colors.otherThemeBackground};
 
       &:last-child {
         margin-right: 0em;
@@ -120,25 +104,38 @@ export default styled(NavBar)`
   }
 
 
-  .link {
-      margin-right: 1em;
-      font-weight: 500;
-      color: ${({ theme }) => theme.colors.texto};
-  }
 
   .modo{
     display:flex;
     align-items: center;
     margin-left:1em;
-    float: right;
-    
+    font-family: 'Raleway', sans-serif;
+    font-size: 1rem;
     background: none;
     border: none;
+    font-weight: 500;
+    color: ${({ theme }) => theme.colors.navBarText};
 
     &:hover {
       cursor: pointer;
     }
+
+    .circle {
+      background-color: ${({ theme }) => theme.colors.navBarText};
+      border: 2px solid ${({theme})=> theme.colors.claro};
+      width: 1em;
+      height: 1em;
+      border-radius: 50%;
+      margin-left: 0.4em;
+     }
     
+  }
+
+
+  @media screen and (max-width: ${({theme})=>theme.breakpoints.md}){
+    nav {
+      display: none;
+    }
   }
 
 
