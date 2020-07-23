@@ -10,8 +10,7 @@ const Contacto = ({ className }) => {
 
     const sendForm = (event)=> {
         event.preventDefault();
-
-        const data = new FormData(formulario.current)
+        const data = new FormData(formulario.current);
      
 
         fetch("https://usebasin.com/f/8cbe29ba9b2a", {
@@ -44,7 +43,6 @@ const Contacto = ({ className }) => {
                         </div>
 
                         <form ref={formulario} className="" onSubmit={sendForm}>
-
                             <label for="nombre">Tu nombre</label>
                             <input id="nombre" name="nombre" type="text"></input>
 

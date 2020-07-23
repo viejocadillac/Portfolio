@@ -1,4 +1,6 @@
 import { useLayoutEffect, useEffect, useState } from 'react';
+import { setThemeCookie, parseCookies } from './utils';
+import {light, dark} from './theme.js'
 
 /**
  * 
@@ -18,55 +20,30 @@ const useScroll = (callback) => {
           document.removeEventListener('scroll', onScroll);
       }
   })
+};
+
+const useTheme = () => {
+  const theme1 = light; // Number 1 default theme
+  const theme2 = dark;
+
+  const [theme, setTheme] = useState(theme1)
+
+  const toggleTheme = () => {
+    const newTheme = theme === theme1 ? theme2 : theme1;
+    setThemeCookie(newTheme.name);
+    setTheme(newTheme);
+  }
+
+  useLayoutEffect(() => {
+    const cookies = parseCookies()
+    console.log(cookies)
+    if (cookies.modo === theme2.name) {
+      setTheme(theme2)
+    } 
+  }, [setTheme])
+
+  return [theme, setTheme, toggleTheme]
 }
-
-const useResize = (cb) => {
-  const handleResize = (event) => {
-    cb(document.documentElement.clientWidth, document.documentElement.clientHeight);
-  };
-
-  useLayoutEffect(() => {
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-};
-
-const useViewportHeight = () => {
-  const [viewportHeight, setViewportHeight] = useState(document.documentElement.clientHeight);
-  const handleResize = (event) => {
-    const h = document.documentElement.clientHeight;
-    setViewportHeight(h);
-  };
-
-  useLayoutEffect(() => {
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-  return viewportHeight;
-};
-
-const useViewportWidth = () => {
-  const [viewportWidth, setViewportWidth] = useState(document.documentElement.clientWidth);
-  const handleResize = (event) => {
-    const w = document.documentElement.clientWidth;
-    setViewportWidth(w);
-  };
-
-  useLayoutEffect(() => {
-    window.addEventListener('resize', handleResize);
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  });
-  return viewportWidth;
-};
-
 
 const useToggleShowOn = (pixels, initialShow) => {
   const [show, setShow] = useState(initialShow)
@@ -85,5 +62,7 @@ const useToggleShowOn = (pixels, initialShow) => {
 }
 
 export {
-  useScroll, useViewportHeight, useViewportWidth, useResize, useToggleShowOn
-};
+  useScroll,
+  useTheme,
+  useToggleShowOn,
+}

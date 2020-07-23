@@ -9,22 +9,22 @@ import SobreMi from '../sections/SobreMi';
 import Contacto from '../sections/Contacto';
 import GlobalStyles from './GlobalStyles';
 
+import { useTheme } from '../hooks';
+
 import {light, dark} from '../theme.js'
+
+
+
 
 
 
 function App({ className }) {
 
 
-  const [lightThemeActive, setLightThemeActive] = React.useState(true)
-
-
-  const toggleTheme = ()=>{
-    setLightThemeActive((prev) => !prev)
-  }
+  const [theme, setTheme, toggleTheme] = useTheme()
 
   return (
-    <ThemeProvider theme={lightThemeActive ? light : dark}>
+    <ThemeProvider theme={theme}>
       <GlobalStyles/>
       <Pagina className={className} onChangeMode={toggleTheme}>
         <Portada />
