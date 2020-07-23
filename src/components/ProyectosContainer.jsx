@@ -8,40 +8,35 @@ const ProyectosContainer = ({className})=>{
 
     const [proyectos, setProyectos] = React.useState([])
 
-    React.useEffect(()=>{
-        // fetch proyectos
-        const DOWNLOADED_PROYECTOS = [
-            {
-                nombre:'ReactSort',
-                descripcion:'Demostración de algoritmos',
-                link:'https://t4edesign.com/wp-content/uploads/2017/11/Material-design-300x169.jpg',
-            },
-            {
-                nombre:'Ordenadito',
-                descripcion:'Juego didáctico.',
-                link:'https://t4edesign.com/wp-content/uploads/2017/11/02-pagekit-user-interface.jpg',
-            },
-            {
-                nombre:'Medio Trato',
-                descripcion:'Juego interactivo.',
-                link:'https://noti-tec.webcindario.com/programacion_web/img/background_material_negro_rosa.jpg',
-            },
-            {
-                nombre:'Germina',
-                descripcion:'Diseño web.',
-                link:'https://noti-tec.webcindario.com/programacion_web/img/background_material_negro_rosa.jpg',
-            }
-        ]
+    React.useEffect(() => {
+        // Fetch projects from my Github account
+        fetch('https://api.github.com/users/viejocadillac/repos')
+        .then((response) => {
+           
+            return response.json()
+        })
+        .then( (res) => {
+            setProyectos(res)
+        }).catch((err) => {
 
-        setProyectos(DOWNLOADED_PROYECTOS)
+        })
+        
     }, [])
 
 
     return (
         <div className={className}>
             {
-                 proyectos.map((proyecto) => {
-                    return <Proyecto key={proyecto.nombre} nombre={proyecto.nombre} descripcion={proyecto.descripcion} link={proyecto.link}/>
+                proyectos.map((proyecto) => {
+                    return (
+                        <Proyecto 
+                            key={proyecto.name} 
+                            nombre={proyecto.name} 
+                            descripcion={proyecto.description} 
+                            githubLink={proyecto.html_url}
+                            liveUrl={proyecto.homepage}
+                        />
+                    )
                 })
             }
  
@@ -52,6 +47,6 @@ const ProyectosContainer = ({className})=>{
 export default styled(ProyectosContainer)`
     margin-bottom: 4rem;
     display: grid;
-    grid-template-columns: repeat( auto-fill, minmax(200px, 1fr) );
+    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
     gap: 1rem;      
 `

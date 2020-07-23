@@ -3,17 +3,17 @@ import styled from 'styled-components';
 import Pulse from 'react-reveal/Pulse';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Proyecto = ({className, nombre, descripcion, link}) => {
+const Proyecto = ({className, nombre, descripcion, githubLink, liveUrl}) => {
     return (
      
         <article className={className}>
             <header>
-                <h1>{nombre}</h1>
+                <h1>{nombre.replace(/-/g, ' ')}</h1>
                 <p>{descripcion}</p>
             </header>
             <footer>
-                <a className="github"><FontAwesomeIcon icon={['fab', 'github']} size="2x"/>Github</a>
-                <a className="live">Live</a>
+                <a href={githubLink} className="github"><FontAwesomeIcon icon={['fab', 'github']} size="2x"/>Github</a>
+                { liveUrl ? <a href={liveUrl} className="live">Live</a> : <span className="live">Live</span>}
             </footer>
         
         </article>
@@ -28,16 +28,14 @@ const Proyecto = ({className, nombre, descripcion, link}) => {
 export default styled(Proyecto)`
 box-shadow: 2px 5px 7px -2px rgba(0,0,0,0.4);
 text-align:center;
-padding: 1rem;
+padding: 1rem ;
 header {
     margin: 0;
     color: ${({theme})=> theme.colors.claro};
-    padding: 2rem 0;
+    padding: 2rem;
     height: 150px;
     box-sizing: border-box;
     background-color: ${({theme})=>theme.colors.primario};
-
-    
 }
 
 h1 {
@@ -55,8 +53,22 @@ footer {
     justify-content: space-between;
     color: ${({theme})=> theme.colors.accent};
 
+    a {
+    color: inherit;
+    text-decoration: none;
+
+ 
+}
+
     .live {
         font-weight: 700;
+     
+        color: ${({theme, liveUrl}) => liveUrl ? theme.colors.accent : 'grey'};
+        opacity: ${({liveUrl}) => !liveUrl && 0.5};
+
+
+
+
     }
 
     .github {

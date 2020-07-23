@@ -14,14 +14,8 @@ import { useTheme } from '../hooks';
 import {light, dark} from '../theme.js'
 
 
-
-
-
-
 function App({ className }) {
-
-
-  const [theme, setTheme, toggleTheme] = useTheme()
+  const [theme, toggleTheme] = useTheme(dark, light)
 
   return (
     <ThemeProvider theme={theme}>

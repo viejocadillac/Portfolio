@@ -16,7 +16,7 @@ const Contacto = ({ className }) => {
         fetch("https://usebasin.com/f/8cbe29ba9b2a", {
             method: 'POST',
             body: data,
-        }).then((response)=>{
+        }).then((response) => {
             console.log(response)
         })
     }
@@ -35,9 +35,9 @@ const Contacto = ({ className }) => {
                         <div>
                             <p>Enviame un mensaje, o contactame por las redes!</p>
                             <div className="icons-container">
-                                <FontAwesomeIcon icon={['fab', 'github']} size="2x" />
-                                <FontAwesomeIcon icon={['fab', 'linkedIn']} size="2x" />
-                                <FontAwesomeIcon icon={['fab', 'instagram']} size="2x" />
+                                <a href=""><FontAwesomeIcon icon={['fab', 'github']} size="2x" /></a>
+                                <a href=""><FontAwesomeIcon icon={['fab', 'linkedin']} size="2x" /></a>
+                                <a href=""><FontAwesomeIcon icon={['fab', 'instagram']} size="2x" /></a>
                             </div>
 
                         </div>
@@ -73,8 +73,9 @@ p{
 
 .icons-container{
   
-   
+    margin-bottom: 3rem;
     border: 1px solid red;
+    color: ${({theme})=> theme.colors.accent};
 
     * {
         margin: 0.5rem;

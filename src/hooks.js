@@ -1,6 +1,6 @@
 import { useLayoutEffect, useEffect, useState } from 'react';
 import { setThemeCookie, parseCookies } from './utils';
-import {light, dark} from './theme.js'
+
 
 /**
  * 
@@ -22,11 +22,8 @@ const useScroll = (callback) => {
   })
 };
 
-const useTheme = () => {
-  const theme1 = light; // Number 1 default theme
-  const theme2 = dark;
-
-  const [theme, setTheme] = useState(theme1)
+const useTheme = (theme1, theme2 ) => {
+  const [theme, setTheme] = useState(theme1) // Number 1 default theme
 
   const toggleTheme = () => {
     const newTheme = theme === theme1 ? theme2 : theme1;
@@ -36,13 +33,12 @@ const useTheme = () => {
 
   useLayoutEffect(() => {
     const cookies = parseCookies()
-    console.log(cookies)
     if (cookies.modo === theme2.name) {
-      setTheme(theme2)
+      setTheme(theme2);
     } 
-  }, [setTheme])
+  }, [setTheme]);
 
-  return [theme, setTheme, toggleTheme]
+  return [theme, toggleTheme];
 }
 
 const useToggleShowOn = (pixels, initialShow) => {
