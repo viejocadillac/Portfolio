@@ -4,7 +4,7 @@ import Section from '../components/Section';
 import Container from '../components/Container'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const Contacto = ({ className }) => {
+const Contacto = ({ id, className, referencia, show }) => {
 
     const formulario = React.useRef()
 
@@ -25,7 +25,7 @@ const Contacto = ({ className }) => {
 
 
     return (
-        <Section className={className}>
+        <Section referencia={referencia} id={id} className={className} show={show}>
             <Section.Title text={['Con', 'tacto.']} />
             <Container>
                 <Section.Body className="proyectos-container" >
@@ -35,9 +35,9 @@ const Contacto = ({ className }) => {
                         <div>
                             <p>Enviame un mensaje, o contactame por las redes!</p>
                             <div className="icons-container">
-                                <a href=""><FontAwesomeIcon icon={['fab', 'github']} size="2x" /></a>
-                                <a href=""><FontAwesomeIcon icon={['fab', 'linkedin']} size="2x" /></a>
-                                <a href=""><FontAwesomeIcon icon={['fab', 'instagram']} size="2x" /></a>
+                                <a href="https://github.com/viejocadillac"><FontAwesomeIcon icon={['fab', 'github']} size="2x" /></a>
+                                <a href="https://www.linkedin.com/in/mathias-moreira-b77290195/"><FontAwesomeIcon icon={['fab', 'linkedin']} size="2x" /></a>
+                             
                             </div>
 
                         </div>
@@ -66,15 +66,19 @@ const Contacto = ({ className }) => {
 
 export default styled(Contacto)`
 display:flex;
+
 flex-direction:column;
-p{
+a {
+    color: inherit;
+}
+p {
     text-align:center;
 }
 
 .icons-container{
-  
+    display: flex;
+    justify-content: center;
     margin-bottom: 3rem;
-    border: 1px solid red;
     color: ${({theme})=> theme.colors.accent};
 
     * {

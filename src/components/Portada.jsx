@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useScroll, useResize, useToggleShowOn } from '../hooks.js'
 
 
-const Portada = ({ className }) => {
+const Portada = ({ className, show }) => {
 
   const scrollButtonHandler = () => {
 
@@ -23,7 +23,7 @@ const Portada = ({ className }) => {
 
   
   return (
-    <section className={className}>
+    <section className={className} show={show}>
       <div className="overlay"></div>
       <div ref={imagen} className="imagen"></div>
   

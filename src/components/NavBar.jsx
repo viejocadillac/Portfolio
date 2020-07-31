@@ -1,5 +1,6 @@
 import React from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Fade from 'react-reveal/Fade';
 
 import Container from './Container'
@@ -20,10 +21,12 @@ const Nombre = styled.h1`
 
 
 
-const NavBar = ({ className, toggleTheme }) => {
+const NavBar = ({ className, toggleTheme, links }) => {
 
   const SCROLL_DELAY = 150
   const showNombre = useToggleShowOn(SCROLL_DELAY, false)
+
+
 
   return (
     <header className={className}>
@@ -37,9 +40,14 @@ const NavBar = ({ className, toggleTheme }) => {
           <Fade when={showNombre}>
             <nav>
               <ul className="links">
-                <li >Proyectos</li>
-                <li >Sobre mi</li>
-                <li >Contacto</li>
+
+                {
+                  links.filter((link) => link.show).map((link) => (
+                    <li><NavLink ref={link.ref} to={`#${link.id}`}>{link.text}</NavLink></li>
+
+                  ))
+                }
+          
               </ul>
             </nav>
           </Fade>

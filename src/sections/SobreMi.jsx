@@ -6,11 +6,11 @@ import Container from '../components/Container';
 
 
 
-const SobreMi = ({ className }) => { 
+const SobreMi = ({ id, className, referencia, show }) => { 
   const theme = React.useContext(ThemeContext)
   
   return (
-    <Section className={className} backgroundColor={theme.colors.primario}>
+    <Section referencia={referencia} id={id} className={className} backgroundColor={theme.colors.primario} show={show}>
     <Section.Title text="Sobre mi." />
     <Section.Body className="sobre-mi">
       <Container >

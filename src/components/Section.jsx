@@ -1,9 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import {useIntersectionObserver} from '../hooks'
 
-const Section = styled(({className, children}) => {
+
+const Section = styled(({id, referencia, className, children, show}) => {
+
+    // Referencia de la seccion actual.
+    // Cuando este entre en el viewport, se cambia el estilo del 
+    // link de dicha seccion el la barra de navegacion
+    const ref = React.useRef(null)
+
+    const [entries] = useIntersectionObserver(ref, referencia)
+
+
+
+
     return (
-        <section className={className}>
+        <section id={id} ref={ref} className={className} show={show}>
             {children}
         </section>
     )

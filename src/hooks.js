@@ -1,4 +1,4 @@
-import { useLayoutEffect, useEffect, useState } from 'react';
+import { useLayoutEffect, useEffect, useState, useRef } from 'react';
 import { setThemeCookie, parseCookies } from './utils';
 
 
@@ -57,8 +57,35 @@ const useToggleShowOn = (pixels, initialShow) => {
   return show
 }
 
+
+
+const useIntersectionObserver = (toObserve, navRef, options) => {
+
+    const [entries, setEntries] = useState()
+    console.log(`navRef en useIntersectionObserver: ${navRef}`)
+
+    const callback = (entries) => {
+        if(entries[0].isIntersecting) {
+            if (navRef.current) navRef.current.style.color = 'Red'
+        } else {
+          if (navRef.current) navRef.current.style.color = 'grey'
+        }
+    }
+
+    const observer = useRef(new IntersectionObserver(callback, {threshold: 0.35}))
+
+
+    useEffect(()=> {
+        observer.current.observe(toObserve.current)
+        return () => observer.current.disconnect()
+    }, [toObserve])
+
+    return [entries]
+}
+
 export {
   useScroll,
   useTheme,
   useToggleShowOn,
+  useIntersectionObserver
 }
