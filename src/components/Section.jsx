@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import {useIntersectionObserver} from '../hooks'
+import {useIntersectionObserver, useOtherIntersection} from '../hooks'
 
 
 const Section = styled(({id, referencia, className, children, show}) => {
@@ -10,7 +10,19 @@ const Section = styled(({id, referencia, className, children, show}) => {
     // link de dicha seccion el la barra de navegacion
     const ref = React.useRef(null)
 
-    const [entries] = useIntersectionObserver(ref, referencia)
+    //const [entries] = useIntersectionObserver(ref, referencia)
+
+    useOtherIntersection(ref, referencia, (entries) => {
+        const element = document.getElementById(`nav-${id}`);
+        
+        if(entries[0].isIntersecting && element) {
+       
+            element.style.color = 'Red'
+                       
+        } else {
+          if(element) element.style.color = 'Red'
+        }
+    })
 
 
 

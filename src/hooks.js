@@ -83,9 +83,30 @@ const useIntersectionObserver = (toObserve, navRef, options) => {
     return [entries]
 }
 
+const useOtherIntersection = (toObserve, navRef, callback) => {
+
+  const [entries, setEntries] = useState()
+  console.log(`navRef en useIntersectionObserver: ${navRef}`)
+
+  
+  const observer = useRef(new IntersectionObserver(callback, {threshold: 0.35}))
+
+
+  useEffect(()=> {
+      observer.current.observe(toObserve.current)
+      return () => observer.current.disconnect()
+  }, [toObserve])
+
+  return [entries]
+
+
+
+}
+
 export {
   useScroll,
   useTheme,
   useToggleShowOn,
-  useIntersectionObserver
+  useIntersectionObserver,
+  useOtherIntersection
 }

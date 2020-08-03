@@ -42,8 +42,8 @@ const NavBar = ({ className, toggleTheme, links }) => {
               <ul className="links">
 
                 {
-                  links.filter((link) => link.show).map((link) => (
-                    <li><NavLink ref={link.ref} to={`#${link.id}`}>{link.text}</NavLink></li>
+                  links.filter((link) => true).map((link) => (
+                    <li><NavLink  to={`#${link.id}`}>{link.text}</NavLink></li>
 
                   ))
                 }

@@ -10,6 +10,8 @@ import Contacto from '../sections/Contacto';
 import GlobalStyles from './GlobalStyles';
 import {BrowserRouter} from 'react-router-dom'
 
+import { useOtherIntersection } from "../hooks";
+
 import { useTheme } from '../hooks';
 
 import {light, dark} from '../theme.js'
@@ -18,21 +20,15 @@ import {light, dark} from '../theme.js'
 function App({ className }) {
   const [theme, toggleTheme] = useTheme(dark, light)
 
-  const portada = React.useRef(null)
-  const proyectos = React.useRef(null)
-  const sobreMi = React.useRef(null)
-  const contacto = React.useRef(null)
-
-
-  return (
+    return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyles/>
         <Pagina className={className} onChangeMode={toggleTheme}>
-          <Portada referencia={portada} id="portada" name="Portada" show={false}/>
-          <Proyectos referencia={proyectos} id='proyectos' name="Proyectos" show={true}/>
-          <SobreMi referencia={sobreMi} id='sobremi' name="Sobre Mi" show={true}/>
-          <Contacto referencia={contacto} id='contacto' name="Contacto" show={true}/>
+          <Portada  id="portada" name="Portada" show={false}/>
+          <Proyectos id='proyectos' name="Proyectos" show={true}/>
+          <SobreMi  id='sobremi' name="Sobre Mi" show={true}/>
+          <Contacto  id='contacto' name="Contacto" show={true}/>
         </Pagina>
       </ThemeProvider>
     </BrowserRouter>
