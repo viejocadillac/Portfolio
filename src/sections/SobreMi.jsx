@@ -10,7 +10,7 @@ const SobreMi = ({ id, className, referencia, show }) => {
   const theme = React.useContext(ThemeContext)
   
   return (
-    <Section referencia={referencia} id={id} className={className} backgroundColor={theme.colors.primario} show={show}>
+    <Section ref={referencia} id={id} className={className} backgroundColor={theme.colors.primario} show={show}>
     <Section.Title text="Sobre mi." />
     <Section.Body className="sobre-mi">
       <Container >

@@ -23,16 +23,44 @@ function App({ className }) {
   const sobreMi = React.useRef(null)
   const contacto = React.useRef(null)
 
+  // Se crea la lista de objectos que se pasaran al nav 
+  const sections = [
+    {
+      ref: portada,
+      id: 'portada',
+      text: 'Portada',
+      display: false,
+    },
+    {
+      ref: proyectos,
+      id: 'proyectos',
+      text: 'Proyectos',
+      display: true,
+    },
+    {
+      ref: sobreMi,
+      id: 'sobremi',
+      text: 'Sobre Mi',
+      display: true,
+    },
+    {
+      ref: contacto,
+      id: 'contacto',
+      text: 'Contacto',
+      display: true,
+    }
+  ]
+
 
   return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyles/>
-        <Pagina className={className} onChangeMode={toggleTheme}>
-          <Portada referencia={portada} id="portada" name="Portada" show={false}/>
-          <Proyectos referencia={proyectos} id='proyectos' name="Proyectos" show={true}/>
-          <SobreMi referencia={sobreMi} id='sobremi' name="Sobre Mi" show={true}/>
-          <Contacto referencia={contacto} id='contacto' name="Contacto" show={true}/>
+        <Pagina className={className} sections={sections} onChangeMode={toggleTheme}>
+          <Portada referencia={portada} id="portada" name="Portada" />
+          <Proyectos referencia={proyectos} id='proyectos' name="Proyectos" />
+          <SobreMi referencia={sobreMi} id='sobremi' name="Sobre Mi"/>
+          <Contacto referencia={contacto} id='contacto' name="Contacto"/>
         </Pagina>
       </ThemeProvider>
     </BrowserRouter>

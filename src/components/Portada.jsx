@@ -9,27 +9,24 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useScroll, useResize, useToggleShowOn } from '../hooks.js'
 
 
-const Portada = ({ className, show }) => {
-
-  const scrollButtonHandler = () => {
-
-  };
+const Portada = ({ id, referencia, className, show }) => {
 
   const imagen = React.useRef()
 
-  useScroll((scrollPos)=>{
+  // Parallax effect
+  useScroll((scrollPos) => {
     imagen.current.style.transform = `translate( -50%, calc(-50% + ${scrollPos * 0.5}px))`
   })
 
   
   return (
-    <section className={className} show={show}>
+    <section ref={referencia} id="portada" className={className}>
       <div className="overlay"></div>
       <div ref={imagen} className="imagen"></div>
   
       <div className="links-container">
         <h2>Hola, soy <i>Mathias</i>,</h2>
-        <p>te invito a recorrer mi portoflio!</p>
+        <p>te invito a recorrer mi portfolio!</p>
       </div>
       <div className="bottom-circle"><FontAwesomeIcon className="icon" icon="chevron-down" size="2x"/></div>
     </section>

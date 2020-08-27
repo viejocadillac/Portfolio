@@ -18,15 +18,9 @@ const Nombre = styled.h1`
 
 
 
-
-
-
-const NavBar = ({ className, toggleTheme, links }) => {
-
+const NavBar = ({ className, toggleTheme, links, activeSection }) => {
   const SCROLL_DELAY = 150
   const showNombre = useToggleShowOn(SCROLL_DELAY, false)
-
-
 
   return (
     <header className={className}>
@@ -42,10 +36,19 @@ const NavBar = ({ className, toggleTheme, links }) => {
               <ul className="links">
 
                 {
-                  links.filter((link) => link.show).map((link) => (
-                    <li><NavLink ref={link.ref} to={`#${link.id}`}>{link.text}</NavLink></li>
-
-                  ))
+                  links.map((link) => {
+                  
+                    let active;
+                    if(link) active = activeSection === link.id
+                    
+                    return (
+                      <li style={link.display ? {} : {display: 'none'}}>
+                        <NavLink ref={link.ref} to={`#${link.id}`} className={active ? 'nav-link-active' : 'nav-link'}>
+                          {link.text}
+                        </NavLink>
+                      </li>
+                    )
+                  })
                 }
           
               </ul>
@@ -111,6 +114,14 @@ box-sizing: border-box;
     }
   }
 
+  .nav-link {
+    color: white;
+  }
+
+  .nav-link-active {
+    color: tomato;
+  }
+
 
 
   .modo{
@@ -143,6 +154,8 @@ box-sizing: border-box;
   @media screen and (max-width: ${({theme})=>theme.breakpoints.md}){
     nav {
       display: none;
+   
+
     }
   }
 

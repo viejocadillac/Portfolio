@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
 body {
   background-color: ${({theme})=>theme.colors.body};
 }
+
 a {
     text-decoration: none;
     color: none;
@@ -28,6 +29,8 @@ a {
 .g-circle {
     border-radius: 50%;
 }
+
+
 
 `
 

@@ -59,28 +59,22 @@ const useToggleShowOn = (pixels, initialShow) => {
 
 
 
-const useIntersectionObserver = (toObserve, navRef, options) => {
-
+const useIntersectionObserver = (options) => {
+    const [elements, setElements] = useState([])
     const [entries, setEntries] = useState()
-    console.log(`navRef en useIntersectionObserver: ${navRef}`)
 
-    const callback = (entries) => {
-        if(entries[0].isIntersecting) {
-            if (navRef.current) navRef.current.style.color = 'Red'
-        } else {
-          if (navRef.current) navRef.current.style.color = 'grey'
-        }
+    const callback = (_entries) => {
+        setEntries(_entries)
     }
 
     const observer = useRef(new IntersectionObserver(callback, {threshold: 0.35}))
 
-
     useEffect(()=> {
-        observer.current.observe(toObserve.current)
+      elements.forEach( (element) => observer.current.observe(element) )
         return () => observer.current.disconnect()
-    }, [toObserve])
+    }, [elements])
 
-    return [entries]
+    return [setElements, entries]
 }
 
 export {

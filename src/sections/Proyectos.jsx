@@ -9,7 +9,7 @@ const Proyectos = ({ id, referencia, backgroundColor, show }) => {
 
   
   return (
-    <Section referencia={referencia} id={id} backgroundColor={backgroundColor} show={show}>
+    <Section ref={referencia} id={id} backgroundColor={backgroundColor}>
       <Section.Title text="Proyectos." />
       <Container>
         <Section.Body>
