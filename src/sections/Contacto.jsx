@@ -66,7 +66,7 @@ const Contacto = ({ id, className, referencia, show }) => {
 
 export default styled(Contacto)`
 display:flex;
-
+margin-bottom: 6rem;
 flex-direction:column;
 a {
     color: inherit;

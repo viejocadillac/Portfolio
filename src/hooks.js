@@ -11,7 +11,9 @@ const useScroll = (callback) => {
   const onScroll = (event) => {
       // Cross browser support.
       const scrollPos = window.scrollY || window.scrollTop || document.getElementsByTagName("html")[0].scrollTop;
-      callback(scrollPos);
+
+      window.requestAnimationFrame(() => callback(scrollPos))
+     
   }
 
   useEffect(() => {

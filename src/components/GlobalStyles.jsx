@@ -23,7 +23,7 @@ body {
 
 a {
     text-decoration: none;
-    color: none;
+    color: rgba(0,0,0,0.7);
 }
 
 .g-circle {

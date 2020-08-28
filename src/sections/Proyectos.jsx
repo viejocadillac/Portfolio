@@ -5,7 +5,7 @@ import Container from '../components/Container';
 import ProyectosContainer from '../components/ProyectosContainer';
 
 
-const Proyectos = ({ id, referencia, backgroundColor, show }) => {
+const Proyectos = ({ id, referencia, backgroundColor}) => {
 
   
   return (

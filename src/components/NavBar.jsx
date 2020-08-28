@@ -11,9 +11,9 @@ import { useToggleShowOn } from '../hooks.js'
 const Nombre = styled.h1`
     position: relative;
     margin: 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     line-height: 1em;
-    color: ${({theme})=> theme.colors.accent};
+    color: ${({theme})=> theme.colors.primario};
 `
 
 
@@ -43,7 +43,7 @@ const NavBar = ({ className, toggleTheme, links, activeSection }) => {
                     
                     return (
                       <li style={link.display ? {} : {display: 'none'}}>
-                        <NavLink ref={link.ref} to={`#${link.id}`} className={active ? 'nav-link-active' : 'nav-link'}>
+                        <NavLink ref={link.ref} to={`#${link.id}`} className={active ? 'nav-link nav-link-active' : 'nav-link'}>
                           {link.text}
                         </NavLink>
                       </li>
@@ -71,7 +71,7 @@ box-sizing: border-box;
     z-index:4;
     top: 0;
     left: 0;
-    padding: 1rem 0;
+    padding: 0.3rem 0;
     justify-content: space-between;
     align-items: center;
 
@@ -85,7 +85,9 @@ box-sizing: border-box;
 
     p {
       margin: 0;
-      color: ${({theme})=> theme.colors.navBarText}
+      font-size: 0.8em;
+      font-weight: 600;
+      color: ${({theme})=> 'grey'}
     }
 
     .content {
@@ -115,11 +117,12 @@ box-sizing: border-box;
   }
 
   .nav-link {
-    color: white;
+    color: grey;
+    transition: color 0.3s ease-in-out;
   }
 
   .nav-link-active {
-    color: tomato;
+    color: ${({theme}) => theme.colors.accent};
   }
 
 
@@ -131,17 +134,21 @@ box-sizing: border-box;
     font-family: 'Raleway', sans-serif;
     font-size: 1rem;
     background: none;
+    height: 1.5em;
     border: none;
     font-weight: 500;
-    color: ${({ theme }) => theme.colors.navBarText};
+    align-self:center;
+    color: grey;
 
     &:hover {
       cursor: pointer;
     }
 
+   
+
     .circle {
       background-color: ${({ theme }) => theme.colors.navBarText};
-      border: 2px solid ${({theme})=> theme.colors.claro};
+      
       width: 1em;
       height: 1em;
       border-radius: 50%;
@@ -156,6 +163,10 @@ box-sizing: border-box;
       display: none;
    
 
+    }
+
+    .modo {
+      margin-right: 1em;
     }
   }
 

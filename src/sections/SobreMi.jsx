@@ -11,7 +11,7 @@ const SobreMi = ({ id, className, referencia, show }) => {
   
   return (
     <Section ref={referencia} id={id} className={className} backgroundColor={theme.colors.primario} show={show}>
-    <Section.Title text="Sobre mi." />
+    <Section.Title text="Sobre mi." className="title"/>
     <Section.Body className="sobre-mi">
       <Container >
         <div className="perfil">
@@ -34,7 +34,7 @@ const SobreMi = ({ id, className, referencia, show }) => {
             
             El último tiempo, decidí formalizar mis conocimientos siendo parte del programa de
             {' '}
-            <a href="#">Jóvenes a Programar</a>
+            <a href="https://jovenesaprogramar.edu.uy/">Jóvenes a Programar</a>
             .
           </p>
 
@@ -48,9 +48,9 @@ const SobreMi = ({ id, className, referencia, show }) => {
               <span className="tecnologia">Node</span>
               <span className="tecnologia">Html</span>
               <span className="tecnologia">Css</span>
-              <span className="tecnologia">Node</span>
             </div>
           </div>
+          <p className="download-curriculum">Podes descargar mi curriculum, haciendo click <a href="/CV_Mathias Moreira.pdf" download>acá</a></p>
         </div>
 
     
@@ -65,6 +65,10 @@ const SobreMi = ({ id, className, referencia, show }) => {
 export default styled(SobreMi)`
 clip-path: polygon(100% 0, 100% 90%, 0 100%, 0 100px);
 padding-bottom: 8rem;
+
+.title {
+  color: ${({theme})=> theme.colors.claro};
+}
 
    
   
@@ -86,9 +90,18 @@ padding-bottom: 8rem;
       flex-grow: 1;
       color: ${({theme})=> theme.colors.oscuro};
     }
+    b{
+      font-weight: 500;
+     
+    }
+
+    .download-curriculum {
+      margin-top: 4rem;
+    }
 
     .imagen-perfil {
         margin: 0 auto;
+        margin-top: 5rem;
         background-color: white;
         max-width: 100px;
         min-width: 100px;
@@ -164,13 +177,13 @@ padding-bottom: 8rem;
         .tecnologia {
           box-sizing: border-box;
           background-color: ${({theme})=> theme.colors.oscuro};
-          font-size: 0.8em;
+          font-size: 0.9em;
      
-          font-weight: 500;
+          font-weight: 600;
           margin: 0.5em;
           margin-top: 0;
-          padding: 0.2em 1.5em;
-          border-radius: 0.7em;
+          padding: 0.5em 1.5em;
+          border-radius: 1em;
           text-align:center;
           color: ${({theme})=> theme.colors.claro};
           

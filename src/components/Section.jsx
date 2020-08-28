@@ -27,10 +27,10 @@ Section.Title = styled(({className, text})=>{
     )
 })`
    
-    color: ${({theme}) => theme.colors.sectionTitle};
+    color: ${({theme}) => theme.colors.primario};
     text-align: center;
     font-size: 2em;
-    margin-bottom: 7rem;
+    
   
 `
 
