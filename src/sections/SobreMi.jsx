@@ -50,7 +50,7 @@ const SobreMi = ({ id, className, referencia, show }) => {
               <span className="tecnologia">Css</span>
             </div>
           </div>
-          <p className="download-curriculum">Podes descargar mi curriculum, haciendo click <a href="/CV_Mathias Moreira.pdf" download>acá</a></p>
+          <p className="download-curriculum">Podes descargar mi curriculum, haciendo click <a href="/CV_Mathias Moreira.pdf" target="_blank">acá</a></p>
         </div>
 
     
