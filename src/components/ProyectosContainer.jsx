@@ -16,6 +16,7 @@ const ProyectosContainer = ({className})=>{
             return response.json()
         })
         .then( (res) => {
+            console.log(res.filter((project) => project.description[0] !== '-' ))
             setProyectos(res)
         }).catch((err) => {
 
@@ -46,7 +47,8 @@ const ProyectosContainer = ({className})=>{
 
 export default styled(ProyectosContainer)`
     margin-bottom: 4rem;
+    margin-top: 5rem;
     display: grid;
     grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
-    gap: 1rem;      
+    gap: 1.5rem;      
 `

@@ -10,7 +10,6 @@ import Contacto from '../sections/Contacto';
 import GlobalStyles from './GlobalStyles';
 import {BrowserRouter} from 'react-router-dom'
 
-import { useOtherIntersection } from "../hooks";
 
 import { useTheme } from '../hooks';
 
@@ -20,15 +19,49 @@ import {light, dark} from '../theme.js'
 function App({ className }) {
   const [theme, toggleTheme] = useTheme(dark, light)
 
-    return (
+  const portada = React.useRef(null)
+  const proyectos = React.useRef(null)
+  const sobreMi = React.useRef(null)
+  const contacto = React.useRef(null)
+
+  // Se crea la lista de objectos que se pasaran al nav 
+  const sections = [
+    {
+      ref: portada,
+      id: 'portada',
+      text: 'Portada',
+      display: false,
+    },
+    {
+      ref: proyectos,
+      id: 'proyectos',
+      text: 'Proyectos',
+      display: true,
+    },
+    {
+      ref: sobreMi,
+      id: 'sobremi',
+      text: 'Sobre Mi',
+      display: true,
+    },
+    {
+      ref: contacto,
+      id: 'contacto',
+      text: 'Contacto',
+      display: true,
+    }
+  ]
+
+
+  return (
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <GlobalStyles/>
-        <Pagina className={className} onChangeMode={toggleTheme}>
-          <Portada  id="portada" name="Portada" show={false}/>
-          <Proyectos id='proyectos' name="Proyectos" show={true}/>
-          <SobreMi  id='sobremi' name="Sobre Mi" show={true}/>
-          <Contacto  id='contacto' name="Contacto" show={true}/>
+        <Pagina className={className} sections={sections} onChangeMode={toggleTheme}>
+          <Portada referencia={portada} id="portada" name="Portada" />
+          <Proyectos referencia={proyectos} id='proyectos' name="Proyectos" />
+          <SobreMi referencia={sobreMi} id='sobremi' name="Sobre Mi"/>
+          <Contacto referencia={contacto} id='contacto' name="Contacto"/>
         </Pagina>
       </ThemeProvider>
     </BrowserRouter>

@@ -2,25 +2,33 @@
 import React from 'react';
 import NavBar from './NavBar';
 import ToTop from './ToTop';
+import {useIntersectionObserver} from '../hooks'
 
-const Pagina = ({ children, onChangeMode }) => {
+const Pagina = ({ sections, children, onChangeMode }) => {
 
+  const [activeSection, setActiveSection] = React.useState()
 
-  
-  // Se filtran los elementos que van a ser mostrados en la navegacion 
-  const links = children.filter((child) => child.props.referencia).map((child) => {
-    return {
-      id: `nav-${child.props.id}`,
-      text:child.props.name,
-      show:child.props.show,
-    }
-  });
+  const [setElements, entries] = useIntersectionObserver()
 
-  
+  React.useEffect(() => {
+    setElements(sections.map(section => section.ref.current))
+  }, [sections, setElements])
+
+  React.useEffect(()=>{
+    if(entries) entries.forEach(entry => {
+      if(entry.isIntersecting){
+     
+        setActiveSection(entry.target)
+      } 
+    })
+  }, [entries])
+
+  let activeSectionId = activeSection ? activeSection.id : ''
+
 
   return (
   <>
-    <NavBar links={links} toggleTheme={onChangeMode}/>
+    <NavBar links={sections} activeSection={activeSectionId} toggleTheme={onChangeMode}/>
       {children}
     <ToTop />
   </>

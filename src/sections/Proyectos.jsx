@@ -5,11 +5,11 @@ import Container from '../components/Container';
 import ProyectosContainer from '../components/ProyectosContainer';
 
 
-const Proyectos = ({ id, referencia, backgroundColor, show }) => {
+const Proyectos = ({ id, referencia, backgroundColor}) => {
 
   
   return (
-    <Section referencia={referencia} id={id} backgroundColor={backgroundColor} show={show}>
+    <Section ref={referencia} id={id} backgroundColor={backgroundColor}>
       <Section.Title text="Proyectos." />
       <Container>
         <Section.Body>

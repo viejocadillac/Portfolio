@@ -20,14 +20,17 @@ const GlobalStyles = createGlobalStyle`
 body {
   background-color: ${({theme})=>theme.colors.body};
 }
+
 a {
     text-decoration: none;
-    color: none;
+    color: rgba(0,0,0,0.7);
 }
 
 .g-circle {
     border-radius: 50%;
 }
+
+
 
 `
 

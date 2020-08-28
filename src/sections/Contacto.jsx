@@ -25,7 +25,7 @@ const Contacto = ({ id, className, referencia, show }) => {
 
 
     return (
-        <Section referencia={referencia} id={id} className={className} show={show}>
+        <Section ref={referencia} id={id} className={className}>
             <Section.Title text={['Con', 'tacto.']} />
             <Container>
                 <Section.Body className="proyectos-container" >
@@ -66,7 +66,7 @@ const Contacto = ({ id, className, referencia, show }) => {
 
 export default styled(Contacto)`
 display:flex;
-
+margin-bottom: 6rem;
 flex-direction:column;
 a {
     color: inherit;

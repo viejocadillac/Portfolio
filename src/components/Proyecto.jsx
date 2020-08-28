@@ -29,11 +29,14 @@ export default styled(Proyecto)`
 box-shadow: 2px 5px 7px -2px rgba(0,0,0,0.4);
 text-align:center;
 padding: 1rem ;
+display: flex;
+flex-direction: column;
 header {
     margin: 0;
     color: ${({theme})=> theme.colors.claro};
     padding: 2rem;
-    height: 150px;
+    min-height: 150px;
+    flex-grow: 1;
     box-sizing: border-box;
     background-color: ${({theme})=>theme.colors.primario};
 }

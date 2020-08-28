@@ -12,14 +12,16 @@ const common = {
 const lightTheme = {
     name: 'light',
     colors: {
-        primario: '#5ABFAD',
+        /* Celeste */
+        primario: '#2DADF8',
         sectionTitle: '#AADEDC',
         navLinks: '#7EADBF',
-        accent: '#F27E63',
+        /* Amarillo */
+        accent: '#FFCC00',
         fondo1: 'White',
-        claro: '#FCFFE5',
+        claro: 'white',
         oscuro: '#233B4A',
-        navBarBackground:'#FCFFE5',
+        navBarBackground:'white',
         navBarText:'#233B4A',
         overlay: '#5ABFAD',
         sectionTitle: '#5ABFAD',
@@ -31,8 +33,10 @@ const lightTheme = {
 const darkTheme = {
     name: 'dark',
     colors:{
-        primario: '#5ABFAD',
-        accent: '#F27E63',
+        /* Celeste */
+        primario: '#2DADF8',
+        /* Amarillo */
+        accent: '#FFCC00',
         fondo: '#233B4A',
         claro: '#FCFFE5',
         navBarBackground:'#233B4A',
