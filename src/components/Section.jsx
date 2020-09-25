@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import Zoom from 'react-reveal/Zoom';
 import {useIntersectionObserver, useOtherIntersection} from '../hooks'
 
 
@@ -22,7 +23,7 @@ const Section = styled(React.forwardRef( (props, ref) => {
 Section.Title = styled(({className, text})=>{
     return (
         <header className={className}>
-            <h1>{text}</h1>
+            <Zoom><h1>{text}</h1></Zoom>
         </header>
     )
 })`

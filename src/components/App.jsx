@@ -18,6 +18,7 @@ import {light, dark} from '../theme.js'
 
 function App({ className }) {
   const [theme, toggleTheme] = useTheme(dark, light)
+  // TODO Recordar la seleccion de tema previa mediante storage
 
   const portada = React.useRef(null)
   const proyectos = React.useRef(null)

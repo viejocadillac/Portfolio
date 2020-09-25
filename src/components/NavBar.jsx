@@ -87,7 +87,7 @@ box-sizing: border-box;
       margin: 0;
       font-size: 0.8em;
       font-weight: 600;
-      color: ${({theme})=> 'grey'}
+      color: grey;
     }
 
     .content {

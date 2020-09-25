@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import styled, { ThemeContext } from 'styled-components';
+import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Container from '../components/Container';
 
@@ -20,10 +21,13 @@ const SobreMi = ({ id, className, referencia, show }) => {
 
         <div className="descripcion">
           <h3 className="titulo">No soy un programador autodidacta mas.</h3>
+          <Fade left>
           <p>
             Me recibí en 2019 de Técnico en Mantenimiento de Aeronaves. El último tiempo,
-            he desempeñado funciones relacionadas a la aviación dónde empecé a poner en practica mis conocimientos.
+            he desempeñado funciones relacionadas a la aviación dónde empecé a poner en práctica mis conocimientos.
           </p>
+          </Fade>
+          <Fade right>
           <p>
             De igual forma, me encuentro
             {' '}
@@ -37,6 +41,7 @@ const SobreMi = ({ id, className, referencia, show }) => {
             <a href="https://jovenesaprogramar.edu.uy/">Jóvenes a Programar</a>
             .
           </p>
+          </Fade>
 
           <div className="container-tecnologias">
             <p>Algunas de las tecnologias que manejo son:</p>
