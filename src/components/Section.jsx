@@ -31,9 +31,7 @@ Section.Title = styled(({className, text})=>{
     color: ${({theme}) => theme.colors.primario};
     text-align: center;
     font-size: 2em;
-    
-  
-`
+  padding-top: 7rem;
 
 Section.Body = styled(({className, children})=>{
     return (
