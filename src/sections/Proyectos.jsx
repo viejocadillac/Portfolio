@@ -4,18 +4,14 @@ import Section from '../components/Section';
 import Container from '../components/Container';
 import ProyectosContainer from '../components/ProyectosContainer';
 
-
-const Proyectos = ({ id, referencia, backgroundColor}) => {
-
-  return (
-    <Section ref={referencia} id={id} backgroundColor={backgroundColor}>
-      <Container>
-        <Section.Body>
-          <ProyectosContainer />
-        </Section.Body>
-      </Container>
-    </Section>
-  );
-};
+const Proyectos = ({ id, referencia, backgroundColor }) => (
+  <Section ref={referencia} id={id} backgroundColor={backgroundColor}>
+    <Container>
+      <Section.Body>
+        <ProyectosContainer />
+      </Section.Body>
+    </Container>
+  </Section>
+);
 
 export default Proyectos;
