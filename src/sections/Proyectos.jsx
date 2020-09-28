@@ -7,17 +7,15 @@ import ProyectosContainer from '../components/ProyectosContainer';
 
 const Proyectos = ({ id, referencia, backgroundColor}) => {
 
-  
   return (
     <Section ref={referencia} id={id} backgroundColor={backgroundColor}>
-      <Section.Title text="Proyectos." />
       <Container>
         <Section.Body>
           <ProyectosContainer />
         </Section.Body>
       </Container>
     </Section>
-    )
+  );
 };
 
 export default Proyectos;
