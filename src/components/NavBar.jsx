@@ -3,32 +3,31 @@ import styled from 'styled-components';
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 import Fade from 'react-reveal/Fade';
 
-import Container from './Container'
+import Container from './Container';
 
-import { useToggleShowOn } from '../hooks.js'
-
+import { useToggleShowOn } from '../hooks';
 
 const Nombre = styled.h1`
     position: relative;
     margin: 0;
     font-size: 1.2em;
     line-height: 1em;
-    color: ${({theme})=> theme.colors.primario};
-`
+    color: ${({ theme }) => theme.colors.primario};
+`;
 
-
-
-const NavBar = ({ className, toggleTheme, links, activeSection }) => {
-  const SCROLL_DELAY = 150
-  const showNombre = useToggleShowOn(SCROLL_DELAY, false)
+const NavBar = ({
+  className, toggleTheme, links, activeSection,
+}) => {
+  const SCROLL_DELAY = 150;
+  const showNombre = useToggleShowOn(SCROLL_DELAY, false);
 
   return (
     <header className={className}>
       <Container className="content">
-          <div >
-            <Nombre >Mathias Moreira</Nombre>
-            <p>Desarrollador</p>
-          </div>
+        <div>
+          <Nombre>Mathias Moreira</Nombre>
+          <p>Desarrollador</p>
+        </div>
 
         <div className="flex">
           <Fade when={showNombre}>
@@ -37,68 +36,66 @@ const NavBar = ({ className, toggleTheme, links, activeSection }) => {
 
                 {
                   links.map((link) => {
-                  
                     let active;
-                    if(link) active = activeSection === link.id
-                    
+                    if (link) active = activeSection === link.id;
+
                     return (
-                      <li style={link.display ? {} : {display: 'none'}}>
+                      <li style={link.display ? {} : { display: 'none' }}>
                         <NavLink ref={link.ref} to={`#${link.id}`} className={active ? 'nav-link nav-link-active' : 'nav-link'}>
                           {link.text}
                         </NavLink>
                       </li>
-                    )
+                    );
                   })
                 }
-          
               </ul>
             </nav>
           </Fade>
-          <button className="modo" onClick={toggleTheme}>Modo<div className="circle" ></div></button>
+          <button type="button" className="modo" onClick={toggleTheme}>
+            Modo
+            <div className="circle" />
+          </button>
         </div>
       </Container>
     </header>
-  )
-}
+  );
+};
 
 export default styled(NavBar)`
-box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-    color: ${({ theme }) => theme.colors.navBarText};
-    background-color: ${({ theme }) => theme.colors.navBarBackground};
-    position: fixed;
-    width: 100vw;
-    z-index:4;
-    top: 0;
-    left: 0;
-    padding: 0.3rem 0;
+  box-sizing: border-box;
+  font-family: 'Raleway', sans-serif;
+  color: ${({ theme }) => theme.colors.navBarText};
+  background-color: ${({ theme }) => theme.colors.navBarBackground};
+  position: fixed;
+  width: 100vw;
+  z-index:4;
+  top: 0;
+  left: 0;
+  padding: 0.3rem 0;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px 2px rgba(0,0,0,0.2);
+
+  .flex {
+    display:flex;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  p {
+    margin: 0;
+    font-size: 0.8em;
+    font-weight: 600;
+    color: grey;
+  }
+
+  .content {
+    display: flex;
     justify-content: space-between;
     align-items: center;
-
-    .flex {
-      display:flex;
-    }
-
-    nav {
-      display: flex;
-    }
-
-    p {
-      margin: 0;
-      font-size: 0.8em;
-      font-weight: 600;
-      color: grey;
-    }
-
-    .content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-
-    }
-
-  
-
+  }
 
   ul.links {
     list-style: none;
@@ -122,10 +119,8 @@ box-sizing: border-box;
   }
 
   .nav-link-active {
-    color: ${({theme}) => theme.colors.accent};
+    color: ${({ theme }) => theme.colors.accent};
   }
-
-
 
   .modo{
     display:flex;
@@ -144,8 +139,6 @@ box-sizing: border-box;
       cursor: pointer;
     }
 
-   
-
     .circle {
       background-color: ${({ theme }) => theme.colors.navBarText};
       
@@ -154,23 +147,15 @@ box-sizing: border-box;
       border-radius: 50%;
       margin-left: 0.4em;
      }
-    
   }
 
-
-  @media screen and (max-width: ${({theme})=>theme.breakpoints.md}){
+  @media screen and (max-width: ${({ theme }) => theme.breakpoints.md}){
     nav {
       display: none;
-   
-
     }
 
     .modo {
       margin-right: 1em;
     }
   }
-
-
-
-
 `;
