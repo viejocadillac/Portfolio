@@ -2,36 +2,35 @@
 import React from 'react';
 import NavBar from './NavBar';
 import ToTop from './ToTop';
-import {useIntersectionObserver} from '../hooks'
+import { useIntersectionObserver } from '../hooks';
 
 const Pagina = ({ sections, children, onChangeMode }) => {
-
-  const [activeSection, setActiveSection] = React.useState()
-
-  const [setElements, entries] = useIntersectionObserver()
+  const [activeSection, setActiveSection] = React.useState();
+  const [setElements, entries] = useIntersectionObserver({ threshold: 0.35 });
 
   React.useEffect(() => {
-    setElements(sections.map(section => section.ref.current))
-  }, [sections, setElements])
+    setElements(sections.map((section) => section.ref.current));
+  }, [sections, setElements]);
 
-  React.useEffect(()=>{
-    if(entries) entries.forEach(entry => {
-      if(entry.isIntersecting){
-     
-        setActiveSection(entry.target)
-      } 
-    })
-  }, [entries])
+  React.useEffect(() => {
+    if (entries) {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target);
+        }
+      });
+    }
+  }, [entries]);
 
-  let activeSectionId = activeSection ? activeSection.id : ''
-
+  const activeSectionId = activeSection ? activeSection.id : '';
 
   return (
-  <>
-    <NavBar links={sections} activeSection={activeSectionId} toggleTheme={onChangeMode}/>
+    <>
+      <NavBar links={sections} activeSection={activeSectionId} toggleTheme={onChangeMode} />
       {children}
-    <ToTop />
-  </>
-)};
+      <ToTop />
+    </>
+  );
+};
 
 export default Pagina;
