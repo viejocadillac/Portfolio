@@ -1,54 +1,80 @@
 import React from 'react';
 import styled from 'styled-components';
-import Proyecto from './Proyecto'
+import Proyecto from './Proyecto';
 
+const ProyectosContainer = ({ className }) => {
 
+  return (
+    <div className={className}>
 
-const ProyectosContainer = ({className})=>{
+      <Proyecto
+        key="proyecto-1"
+        nombre="eMercado"
+        imgSrc="/obligatorio-jap-2020.jpg"
+        githubLink="https://github.com/viejocadillac/obligatorio-jap-2020"
+        liveUrl="https://viejocadillac.github.io/obligatorio-jap-2020/"
+        area="a"
+      />
 
-    const [proyectos, setProyectos] = React.useState([])
+      <Proyecto
+        key="proyecto-2"
+        nombre="Medio Trato"
+        imgSrc="/Medio-Trato.jpg"
+        githubLink="https://github.com/viejocadillac/Medio-Trato"
+        liveUrl="https://viejocadillac.github.io/Medio-Trato/"
+        area="b"
+      />
 
-    React.useEffect(() => {
-        // Fetch projects from my Github account
-        fetch('https://api.github.com/users/viejocadillac/repos')
-        .then((response) => {
-           
-            return response.json()
-        })
-        .then( (res) => {
-            console.log(res.filter((project) => project.description[0] !== '-' ))
-            setProyectos(res)
-        }).catch((err) => {
+      <Proyecto
+        key="proyecto-3"
+        nombre="React Sort"
+        imgSrc="/React-Sort.jpg"
+        githubLink="https://github.com/viejocadillac/React-Sort"
+        liveUrl="https://viejocadillac.github.io/React-Sort/"
+        area="c"
+      />
 
-        })
-        
-    }, [])
+      <Proyecto
+        key="proyecto-3"
+        nombre="Portfolio"
+        imgSrc="/Portfolio.jpg"
+        githubLink="https://github.com/viejocadillac/Portfolio"
+        liveUrl="/"
+        area="d"
+      />
 
+      <Proyecto
+        key="proyecto-3"
+        nombre="Node File Server"
+        imgSrc="/Node-File-Server.jpg"
+        githubLink="https://github.com/viejocadillac/Node-File-Server"
+        area="e"
+      />
 
-    return (
-        <div className={className}>
-            {
-                proyectos.map((proyecto) => {
-                    return (
-                        <Proyecto 
-                            key={proyecto.name} 
-                            nombre={proyecto.name} 
-                            descripcion={proyecto.description} 
-                            githubLink={proyecto.html_url}
-                            liveUrl={proyecto.homepage}
-                        />
-                    )
-                })
-            }
- 
-        </div>
-    )
-}
+    </div>
+  );
+};
 
 export default styled(ProyectosContainer)`
-    margin-bottom: 4rem;
-    margin-top: 5rem;
-    display: grid;
-    grid-template-columns: repeat( auto-fit, minmax(300px, 1fr) );
-    gap: 1.5rem;      
-`
+  margin: 0 1rem;
+  margin-bottom: 4rem;
+  position: relative;
+  top: -6rem;
+  display: grid;
+  grid-template-areas:  "a a b"
+                        "a a c"
+                        "d e e"
+                        "d e e";
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 200px);
+  gap: 1rem;
+  animation: appearBottom 1s ease-in;
+
+  @keyframes appearBottom {
+    from {
+      top: 0;
+    } to {
+      top: -6rem;
+    }
+  }
+`;
