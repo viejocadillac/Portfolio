@@ -2,17 +2,18 @@
 import React from 'react';
 import styled from 'styled-components';
 import Zoom from 'react-reveal/Zoom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Fade from 'react-reveal/Fade';
 
-import { useScroll, useResize, useToggleShowOn } from '../hooks.js';
+import { useScroll } from '../hooks';
 
-const Portada = ({ id, referencia, className, show }) => {
+const Portada = ({ referencia, className }) => {
 
   const imagen = React.useRef();
 
   // Parallax effect
   useScroll((scrollPos) => {
-    imagen.current.style.transform = `translate( -50%, calc(-50% + ${scrollPos * 0.5}px))`
+    imagen.current.style.transform = `translate( -50%, calc(-50% + ${scrollPos * 0.5}px))`;
+    referencia.current.style.opacity = 1 - scrollPos / 400;
   });
 
   return (
@@ -24,9 +25,10 @@ const Portada = ({ id, referencia, className, show }) => {
         <Zoom left opposite cascade>
           <h2>Hola, soy Mathias,</h2>
         </Zoom>
-        <p>te invito a recorrer mi portfolio!</p>
+        <Fade>
+          <p>te invito a recorrer mi portfolio!</p>
+        </Fade>
       </div>
-      <FontAwesomeIcon className="icon" icon="chevron-down" size="2x" />
     </section>
   );
 };
@@ -41,27 +43,6 @@ export default styled(Portada)`
   align-items: center;
   overflow: hidden;
 
-
-  .icon {
-    position: absolute;
-    display: block;
-    color: ${({ theme }) => theme.colors.accent};
-    z-index: 3;
-    top: 100vh;
-    animation: jump 0.5s ease infinite;
-    animation-direction: alternate;
-  }
-
-  @keyframes jump {
-    0%{
-      top: calc(90% + 25px);
-    }
-    100%{
-      top: calc(90% + 20px);
-    }
-  }
-  
-
   .imagen {
     position: absolute;
     overflow: hidden;
@@ -71,7 +52,7 @@ export default styled(Portada)`
     transform: translate(-50%, -50%);
     width: 100%;
     height: 100%;
-    background-image: url('./fondo_portada1.jpg');
+    background-image: url('${process.env.PUBLIC_URL}/fondo_portada1.jpg');
     background-size: cover;
     background-position: center;
     opacity: 0.2;
@@ -92,6 +73,7 @@ export default styled(Portada)`
     font-size: 2rem;
     font-weight: 600;
     z-index: 3;
+    font-family: 'DM Serif Display', serif;
     color: ${({ theme }) => theme.colors.claro};
   
     p {
@@ -99,20 +81,5 @@ export default styled(Portada)`
       font-size: 0.5em;
       font-weight: 500;
     }
-  }
-
-  .bottom-circle {
-    background-color: ${({ theme }) => theme.colors.accent};
-    position:absolute;
-    bottom: -50px;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-  }
-
-  .scroll-button {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
 `;
