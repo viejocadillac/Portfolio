@@ -46,6 +46,7 @@ position: relative;
     font-weight: 600;
     padding: 1rem;
     opacity: 0.8;
+    font-family: 'DM Serif Display', serif;
 }
 
 footer {
@@ -57,7 +58,7 @@ footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: ${({ theme }) => theme.colors.accent};
+  color: White;
 
   a {
     color: inherit;
@@ -66,7 +67,7 @@ footer {
 
   .live {
     font-weight: 700;
-    color: ${({ theme, liveUrl }) => (liveUrl ? theme.colors.accent : 'grey')};
+    color: ${({ liveUrl }) => (liveUrl ? 'white' : 'grey')};
     opacity: ${({ liveUrl }) => !liveUrl && 0.5};
   }
 

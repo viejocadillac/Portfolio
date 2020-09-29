@@ -5,74 +5,99 @@ import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Container from '../components/Container';
 
+const SobreMi = ({
+  id, className, referencia, show,
+}) => {
+  const theme = React.useContext(ThemeContext);
 
-
-const SobreMi = ({ id, className, referencia, show }) => { 
-  const theme = React.useContext(ThemeContext)
-  
   return (
-    <Section ref={referencia} id={id} className={className} backgroundColor={theme.colors.primario} show={show}>
-    <Section.Title text="Sobre mi." className="title"/>
-    <Section.Body className="sobre-mi">
-      <Container >
-        <div className="perfil">
-          <div className="g-circle imagen-perfil" />
-        </div>
-
-        <div className="descripcion">
-          <h3 className="titulo">No soy un programador autodidacta mas.</h3>
-          <Fade left>
-          <p>
-            Me recibí en 2019 de Técnico en Mantenimiento de Aeronaves. El último tiempo,
-            he desempeñado funciones relacionadas a la aviación dónde empecé a poner en práctica mis conocimientos.
-          </p>
-          </Fade>
-          <Fade right>
-          <p>
-            De igual forma, me encuentro
-            {' '}
-            <b>muy motivado a desarrollar otra de mis pasiones; la  programación.</b>
-            Para esto cuento con un gran desempeño
-            {' '}
-            <b>autodidacta.</b>
-            
-            El último tiempo, decidí formalizar mis conocimientos siendo parte del programa de
-            {' '}
-            <a href="https://jovenesaprogramar.edu.uy/">Jóvenes a Programar</a>
-            .
-          </p>
-          </Fade>
-
-          <div className="container-tecnologias">
-            <p>Algunas de las tecnologias que manejo son:</p>
-            <div className="tecnologias">
-              <span className="tecnologia">Sass</span>
-              <span className="tecnologia">React</span>
-              <span className="tecnologia">Git</span>
-              <span className="tecnologia">JavaScript</span>
-              <span className="tecnologia">Node</span>
-              <span className="tecnologia">Html</span>
-              <span className="tecnologia">Css</span>
-            </div>
+    <Section ref={referencia} id={id} className={className} backgroundColor={theme.colors.body} show={show}>
+      <Section.Title text="Sobre mi." className="title" />
+      <Section.Body className="sobre-mi">
+        <Container>
+          <div className="perfil">
+            <div className="g-circle imagen-perfil" />
           </div>
-          <p className="download-curriculum">Podes descargar mi curriculum, haciendo click <a href="/CV_Mathias Moreira.pdf" target="_blank">acá</a></p>
-        </div>
 
-    
-      </Container>
-    </Section.Body>
+          <div className="descripcion">
+            <h3 className="titulo">No soy un programador autodidacta mas.</h3>
 
-  </Section>
+            <div className="contenedor-flex">
 
-)
+              <div className="left">
+                <Fade>
+                  <p>
+                    Me recibí en 2019 de Técnico en Mantenimiento de Aeronaves. El último tiempo,
+                    he desempeñado funciones relacionadas a la aviación dónde empecé a 
+                    poner en práctica mis conocimientos.
+                  </p>
+                </Fade>
+                <Fade>
+                  <p>
+                    De igual forma, me encuentro
+                    <b> muy motivado a desarrollar otra de mis pasiones; la programación. </b>
+                    Para esto cuento con un gran desempeño 
+                    <b>autodidacta. </b>
+                    El último tiempo, decidí formalizar mis conocimientos siendo 
+                    parte del programa de
+                    <a href="https://jovenesaprogramar.edu.uy/">Jóvenes a Programar</a>
+                    .
+                  </p>
+                </Fade>
+              </div>
+
+              <div className="container-tecnologias">
+                <p>Algunas de las tecnologias que manejo son:</p>
+                <div className="tecnologias">
+                  <span className="tecnologia">Sass</span>
+                  <span className="tecnologia">React</span>
+                  <span className="tecnologia">Git</span>
+                  <span className="tecnologia">JavaScript</span>
+                  <span className="tecnologia">Node</span>
+                  <span className="tecnologia">Html</span>
+                  <span className="tecnologia">Css</span>
+                </div>
+              </div>
+
+            </div>
+
+            <p className="download-curriculum">
+              Podes descargar mi curriculum, haciendo click
+              <a href={`${process.env.PUBLIC_URL}/CV_Mathias Moreira.pdf`} target="_blank" rel="noreferrer"> acá</a>
+            </p>
+          </div>
+
+        </Container>
+      </Section.Body>
+    </Section>
+  );
 };
 
 export default styled(SobreMi)`
-clip-path: polygon(100% 0, 100% 90%, 0 100%, 0 100px);
+
 padding-bottom: 8rem;
 
 .title {
-  color: ${({theme})=> theme.colors.claro};
+  color: ${({ theme }) => theme.colors.textoPortada};
+  font-family: 'DM Serif Display', serif;
+}
+
+.contenedor-flex {
+  display: flex;
+  flex-wrap: wrap;
+  opacity: 0.8;
+}
+
+.left {
+  flex-grow: 1;
+  width: 66%;
+  flex-shrink: 1;
+
+}
+
+.download-curriculum {
+  padding-top: 3rem;
+  text-align: center;
 }
 
    
@@ -86,6 +111,7 @@ padding-bottom: 8rem;
     gap: 2em;
     min-height: calc(100vh - 6.5rem - 4em);
     
+    
     @media (max-width: 500px) {
       flex-direction: column;
     }
@@ -93,7 +119,8 @@ padding-bottom: 8rem;
       display: flex;
       align-items: center;
       flex-grow: 1;
-      color: ${({theme})=> theme.colors.oscuro};
+      color: ${({ theme }) => theme.colors.textoPortada};
+      
     }
     b{
       font-weight: 500;
@@ -106,12 +133,12 @@ padding-bottom: 8rem;
 
     .imagen-perfil {
         margin: 0 auto;
-        margin-top: 5rem;
+        margin-top: 1rem;
         background-color: white;
         max-width: 100px;
         min-width: 100px;
         height: 100px;
-        background-image: url('./perfil.jpg');
+        background-image: url('${process.env.PUBLIC_URL}/perfil.jpg');
         background-size: cover;
         border: 4px solid white;
       }
@@ -127,70 +154,79 @@ padding-bottom: 8rem;
         flex-direction: column;
         align-items: center;
         padding: 0 1em;
-        text-align: center;
+        
+        margin: 0;
+        font-family: 'DM Serif Display', serif;
+        
 
         .titulo {
           font-size: 2em;
           width: min(100%, 23ch);
           margin-bottom: 8rem;
+          text-align: center;
         }
 
         p {
-          max-width: 50ch;
           line-height: 2em;
+          margin: 0;
+          padding-right: 2rem;
+          margin-bottom: 1em;
+   
         }
 
         a {
         
           font-weight: 700;
+          color: ${({ theme }) => theme.colors.textoPortada};
         }
       }
 
       .container-tecnologias {
+      
         display: flex;
         align-items:center;
         flex-direction:column;
-        margin-top: 5rem;
-        
-        
+        width: 30%;
+        min-width: 200px;
+        flex-grow: 1;
+      
+      
 
 
-         p {
+        p {
            margin: 0;
            font-weight: 600;
-         }
+        }
 
-         div {
+        div {
        
-           display: flex;
-           flex-wrap: wrap;
+          display: flex;
+          flex-wrap: wrap;
 
-         }
+
+        }
       }
 
       .tecnologias {
         margin-top: 1.5rem;
-        max-width: 300px;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        text-align: center;
-      
-      
+        width: 100%;
 
    
         .tecnologia {
-          box-sizing: border-box;
-          background-color: ${({theme})=> theme.colors.oscuro};
+       
+          border: 2px solid ${({ theme }) => theme.colors.textoPortada};
           font-size: 0.9em;
-     
+
           font-weight: 600;
           margin: 0.5em;
+          margin-left: 0;
           margin-top: 0;
-          padding: 0.5em 1.5em;
-          border-radius: 1em;
+          padding: 0.3em 1em;
+         
           text-align:center;
-          color: ${({theme})=> theme.colors.claro};
+          color: ${({ theme }) => theme.colors.textoPortada};
           
 
         }

@@ -19,9 +19,10 @@ const NavBar = ({
   className, toggleTheme, links, activeSection,
 }) => {
   const SCROLL_DELAY = 150;
-  const showNombre = useToggleShowOn(SCROLL_DELAY, false);
+  const showNombre = useToggleShowOn(SCROLL_DELAY, true);
 
   return (
+    <Fade top>
     <header className={className}>
       <Container className="content">
         <div>
@@ -30,7 +31,7 @@ const NavBar = ({
         </div>
 
         <div className="flex">
-          <Fade when={showNombre}>
+          
             <nav>
               <ul className="links">
 
@@ -50,14 +51,15 @@ const NavBar = ({
                 }
               </ul>
             </nav>
-          </Fade>
+          
           <button type="button" className="modo" onClick={toggleTheme}>
-            Modo
+        
             <div className="circle" />
           </button>
         </div>
       </Container>
     </header>
+    </Fade>
   );
 };
 
@@ -71,7 +73,7 @@ export default styled(NavBar)`
   z-index:4;
   top: 0;
   left: 0;
-  padding: 0.3rem 0;
+  padding: 0.8rem 0;
   justify-content: space-between;
   align-items: center;
   box-shadow: 0 2px 10px 2px rgba(0,0,0,0.2);
@@ -102,10 +104,11 @@ export default styled(NavBar)`
     display:flex;
 
     & > li {
-      margin-right: 1em;
+      margin-right: 0.9em;
       font-weight: 500;
-      font-size: 1rem;
-      color: ${({ theme }) => theme.colors.otherThemeBackground};
+      font-size: 0.9rem;
+      opacity: 0.8;
+      
 
       &:last-child {
         margin-right: 0em;
@@ -114,7 +117,10 @@ export default styled(NavBar)`
   }
 
   .nav-link {
-    color: grey;
+    color: ${({ theme }) => theme.colors.textoPortada};
+    text-transform: uppercase;
+    font-family: 'DM Serif Display', serif;
+    letter-spacing: 2px;
     transition: color 0.3s ease-in-out;
   }
 

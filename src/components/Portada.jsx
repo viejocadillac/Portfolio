@@ -3,6 +3,8 @@ import React from 'react';
 import styled from 'styled-components';
 import Zoom from 'react-reveal/Zoom';
 import Fade from 'react-reveal/Fade';
+import { NavHashLink as NavLink } from 'react-router-hash-link';
+
 
 import { useScroll } from '../hooks';
 
@@ -21,13 +23,14 @@ const Portada = ({ referencia, className }) => {
       <div className="overlay" />
       <div ref={imagen} className="imagen" />
 
-      <div className="links-container">
+      <div className="caption">
         <Zoom left opposite cascade>
-          <h2>Hola, soy Mathias,</h2>
+          <h2 className="nombre">Hola, soy Mathias,</h2>
         </Zoom>
         <Fade>
-          <p>te invito a recorrer mi portfolio!</p>
+          <p className="descripcion">te invito a recorrer mi portfolio!</p>
         </Fade>
+        <NavLink to="#contacto" className="contactame">Contactame</NavLink>
       </div>
     </section>
   );
@@ -42,6 +45,10 @@ export default styled(Portada)`
   justify-content: center;
   align-items: center;
   overflow: hidden;
+
+  .nombre {
+    margin:0;
+  }
 
   .imagen {
     position: absolute;
@@ -67,19 +74,37 @@ export default styled(Portada)`
     background-color: ${({ theme }) => theme.colors.overlay};
   }
 
-  .links-container {
+  .caption {
     position: relative;
     text-align:center;
     font-size: 2rem;
     font-weight: 600;
     z-index: 3;
     font-family: 'DM Serif Display', serif;
-    color: ${({ theme }) => theme.colors.claro};
+    color: ${({ theme }) => theme.colors.textoPortada};
   
-    p {
+    .descripcion {
       margin: 0;
       font-size: 0.5em;
       font-weight: 500;
+    }
+
+    .contactame {
+      font-size: 0.4em;
+      margin-top: 2rem;
+      padding: 0.5em 1em;
+      background: none;
+      font-family: 'DM Serif Display', serif;
+      text-transform: uppercase;
+      color: ${({ theme }) => theme.colors.accent};
+      letter-spacing: 2px;
+      border: 2px solid ${({ theme }) => theme.colors.accent};
+      transition: border 0.3s ease-in-out;
+
+      &:hover {
+        border: 2px solid white;
+        cursor: pointer;
+      }
     }
   }
 `;

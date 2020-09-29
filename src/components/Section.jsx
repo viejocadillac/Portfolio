@@ -17,11 +17,11 @@ Section.Title = styled(({ className, text }) => (
     <Zoom><h1>{text}</h1></Zoom>
   </header>
 ))`
-   
-  color: ${({ theme }) => theme.colors.primario};
+font-family: 'DM Serif Display', serif;
+  color: ${({ theme }) => theme.colors.textoPortada};
   text-align: center;
   font-size: 2em;
-  padding-top: 7rem;
+  padding-top: 3rem;
 `;
 
 Section.Body = styled(({ className, children }) => (

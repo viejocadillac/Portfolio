@@ -96,6 +96,7 @@ export default styled(Contacto)`
   p {
       text-align:center;
       color: ${({ theme }) => theme.colors.navBarText};
+      font-family: 'DM Serif Display', serif;
   }
 
   .input-root {
@@ -126,8 +127,9 @@ export default styled(Contacto)`
 
   button {
     align-self: flex-end;
-    border-radius: 3px;
+    border-radius: 0px;
     color: ${({ theme }) => theme.colors.claro};
     background-color: ${({ theme }) => theme.colors.accent};
+    box-shadow: none;
   }
   `;

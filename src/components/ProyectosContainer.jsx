@@ -35,7 +35,7 @@ const ProyectosContainer = ({ className }) => {
       />
 
       <Proyecto
-        key="proyecto-3"
+        key="proyecto-4"
         nombre="Portfolio"
         imgSrc="/Portfolio.jpg"
         githubLink="https://github.com/viejocadillac/Portfolio"
@@ -44,7 +44,7 @@ const ProyectosContainer = ({ className }) => {
       />
 
       <Proyecto
-        key="proyecto-3"
+        key="proyecto-5"
         nombre="Node File Server"
         imgSrc="/Node-File-Server.jpg"
         githubLink="https://github.com/viejocadillac/Node-File-Server"
@@ -56,7 +56,7 @@ const ProyectosContainer = ({ className }) => {
 };
 
 export default styled(ProyectosContainer)`
-  margin: 0 1rem;
+  margin: 0 0rem;
   margin-bottom: 4rem;
   position: relative;
   top: -6rem;
@@ -65,10 +65,19 @@ export default styled(ProyectosContainer)`
                         "a a c"
                         "d e e"
                         "d e e";
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(4, 200px);
   gap: 1rem;
   animation: appearBottom 1s ease-in;
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:  "a b"
+                          "c c"
+                          "d e"
+                          ;
+    grid-template-rows: repeat(3, 200px);
+  }
 
   @keyframes appearBottom {
     from {
