@@ -23,14 +23,14 @@ const Portada = ({ referencia, className }) => {
       <div className="overlay" />
       <div ref={imagen} className="imagen" />
 
-      <div className="caption">
-        <Zoom left opposite cascade>
-          <h2 className="nombre">Hola, soy Mathias,</h2>
+      <div className="presentacion">
+        <Zoom opposite>
+          <h2 className="presentacion--nombre">Hola, soy Mathias,</h2>
         </Zoom>
         <Fade>
-          <p className="descripcion">te invito a recorrer mi portfolio!</p>
+          <p className="presentacion--descripcion">te invito a recorrer mi portfolio!</p>
         </Fade>
-        <NavLink to="#contacto" className="contactame">Contactame</NavLink>
+        <NavLink to="#contacto" className="presentacion--contactame">Contactame</NavLink>
       </div>
     </section>
   );
@@ -46,9 +46,7 @@ export default styled(Portada)`
   align-items: center;
   overflow: hidden;
 
-  .nombre {
-    margin:0;
-  }
+ 
 
   .imagen {
     position: absolute;
@@ -74,24 +72,28 @@ export default styled(Portada)`
     background-color: ${({ theme }) => theme.colors.overlay};
   }
 
-  .caption {
-    position: relative;
+  .presentacion {
     text-align:center;
-    font-size: 2rem;
-    font-weight: 600;
     z-index: 3;
     font-family: 'DM Serif Display', serif;
     color: ${({ theme }) => theme.colors.textoPortada};
-  
-    .descripcion {
+    margin: 0 1rem;
+
+    &--nombre {
+      font-size: 2.3rem;
+      font-weight: 600;
       margin: 0;
-      font-size: 0.5em;
+    }
+  
+    &--descripcion {
+      margin: 0;
+      margin-bottom: 4rem;
+      font-size: 1em;
       font-weight: 500;
     }
 
-    .contactame {
-      font-size: 0.4em;
-      margin-top: 2rem;
+    &--contactame {
+      font-size: 0.8em;
       padding: 0.5em 1em;
       background: none;
       font-family: 'DM Serif Display', serif;

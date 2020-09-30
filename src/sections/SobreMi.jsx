@@ -20,33 +20,33 @@ const SobreMi = ({
           </div>
 
           <div className="descripcion">
-            <h3 className="titulo">No soy un programador autodidacta mas.</h3>
+            <h3 className="descripcion--titulo">No soy un programador autodidacta mas.</h3>
 
             <div className="contenedor-flex">
 
               <div className="left">
                 <Fade>
-                  <p>
+                  <p className="descripcion--texto">
                     Me recibí en 2019 de Técnico en Mantenimiento de Aeronaves. El último tiempo,
                     he desempeñado funciones relacionadas a la aviación dónde empecé a 
                     poner en práctica mis conocimientos.
                   </p>
                 </Fade>
                 <Fade>
-                  <p>
+                  <p className="descripcion--texto">
                     De igual forma, me encuentro
                     <b> muy motivado a desarrollar otra de mis pasiones; la programación. </b>
                     Para esto cuento con un gran desempeño 
-                    <b>autodidacta. </b>
+                    <b> autodidacta. </b>
                     El último tiempo, decidí formalizar mis conocimientos siendo 
                     parte del programa de
-                    <a href="https://jovenesaprogramar.edu.uy/">Jóvenes a Programar</a>
+                    <a href="https://jovenesaprogramar.edu.uy/"> Jóvenes a Programar</a>
                     .
                   </p>
                 </Fade>
               </div>
 
-              <div className="container-tecnologias">
+              <div className="right">
                 <p>Algunas de las tecnologias que manejo son:</p>
                 <div className="tecnologias">
                   <span className="tecnologia">Sass</span>
@@ -98,11 +98,9 @@ padding-bottom: 8rem;
 .download-curriculum {
   padding-top: 3rem;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
-
-   
-  
-
 
 .sobre-mi {
     display: flex;
@@ -159,14 +157,14 @@ padding-bottom: 8rem;
         font-family: 'DM Serif Display', serif;
         
 
-        .titulo {
+        &--titulo {
           font-size: 2em;
           width: min(100%, 23ch);
           margin-bottom: 8rem;
           text-align: center;
         }
 
-        p {
+        &--texto {
           line-height: 2em;
           margin: 0;
           padding-right: 2rem;
@@ -181,7 +179,7 @@ padding-bottom: 8rem;
         }
       }
 
-      .container-tecnologias {
+      .right {
       
         display: flex;
         align-items:center;
@@ -189,6 +187,7 @@ padding-bottom: 8rem;
         width: 30%;
         min-width: 200px;
         flex-grow: 1;
+        
       
       
 
