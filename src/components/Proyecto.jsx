@@ -66,9 +66,13 @@ footer {
   }
 
   .live {
-    font-weight: 700;
-    color: ${({ liveUrl }) => (liveUrl ? 'white' : 'grey')};
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: ${({ liveUrl }) => (liveUrl ? 'White' : 'grey')};
     opacity: ${({ liveUrl }) => !liveUrl && 0.5};
+    background-color: #7be722;
+    padding: 0.2em 0.5em;
+    border-radius: 1em;
   }
 
   .github {
