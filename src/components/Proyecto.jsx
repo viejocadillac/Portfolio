@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const Proyecto = ({
-  className, nombre, imgSrc, githubLink, liveUrl, area,
+  className, nombre, imgSrc, githubLink, liveUrl,
 }) => {
   const ref = React.useRef();
 
