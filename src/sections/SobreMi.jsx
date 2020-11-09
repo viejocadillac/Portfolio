@@ -63,7 +63,7 @@ const SobreMi = ({
 
             <p className="download-curriculum">
               Podes descargar mi curriculum, haciendo click
-              <a href={`${process.env.PUBLIC_URL}/CV_Mathias Moreira.pdf`} target="_blank" rel="noreferrer"> acá</a>
+              <a href={`${process.env.PUBLIC_URL}/CV_Mathias Moreira.pdf`} target="_blank" rel="noopener noreferrer"> acá</a>
             </p>
           </div>
 
