@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Section from '../components/Section';
 import Container from '../components/Container';
 
-const Contacto = ({ id, className, referencia, show, }) => {
+const Contacto = ({ id, className, referencia }) => {
   const formulario = React.useRef();
   const sendForm = (event) => {
     event.preventDefault();
