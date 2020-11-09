@@ -46,17 +46,17 @@ const SobreMi = ({
                 </Fade>
               </div>
 
-              <div className="right">
-                <p>Algunas de las tecnologias que manejo son:</p>
-                <div className="tecnologias">
-                  <span className="tecnologia">Sass</span>
-                  <span className="tecnologia">React</span>
-                  <span className="tecnologia">Git</span>
-                  <span className="tecnologia">JavaScript</span>
-                  <span className="tecnologia">Node</span>
-                  <span className="tecnologia">Html</span>
-                  <span className="tecnologia">Css</span>
-                </div>
+              <div className="tecnologias">
+                <p className="tecnologias--titulo">Algunas de las tecnologias que manejo son:</p>
+                <ul className="tecnologias--list">
+                  <li className="tecnologias--item">Sass</li>
+                  <li className="tecnologias--item">React</li>
+                  <li className="tecnologias--item">Git</li>
+                  <li className="tecnologias--item">JavaScript</li>
+                  <li className="tecnologias--item">Node</li>
+                  <li className="tecnologias--item">Html</li>
+                  <li className="tecnologias--item">Css</li>
+                </ul>
               </div>
 
             </div>
@@ -92,7 +92,45 @@ padding-bottom: 8rem;
   flex-grow: 1;
   width: 66%;
   flex-shrink: 1;
+}
 
+.tecnologias {
+  display: flex;
+  flex-direction:column;
+  width: 30%;
+  min-width: 200px;
+  flex-grow: 1;
+
+  &--titulo {
+      margin: 0;
+      margin-top: 2rem;
+      font-weight: 600;
+
+      @media screen and (min-width: 670px) {
+        margin-top: 0;
+      }
+  }
+
+  &--list {
+    padding: 0;
+    margin-top: 1.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  &--item {
+    list-style: none;
+    border: 2px solid ${({ theme }) => theme.colors.textoPortada};
+    font-size: 0.9em;
+    font-weight: 600;
+    margin: 0.5em;
+    margin-left: 0;
+    margin-top: 0;
+    padding: 0.3em 1em;
+    text-align:center;
+    color: ${({ theme }) => theme.colors.textoPortada};
+  }
 }
 
 .download-curriculum {
@@ -169,67 +207,17 @@ padding-bottom: 8rem;
           margin: 0;
           padding-right: 2rem;
           margin-bottom: 1em;
-   
         }
 
         a {
-        
           font-weight: 700;
           color: ${({ theme }) => theme.colors.textoPortada};
         }
       }
 
-      .right {
-      
-        display: flex;
-        align-items:center;
-        flex-direction:column;
-        width: 30%;
-        min-width: 200px;
-        flex-grow: 1;
-        
-      
-      
 
-
-        p {
-           margin: 0;
-           font-weight: 600;
-        }
-
-        div {
-       
-          display: flex;
-          flex-wrap: wrap;
-
-
-        }
-      }
-
-      .tecnologias {
-        margin-top: 1.5rem;
-        display: flex;
-        flex-wrap: wrap;
-        width: 100%;
 
    
-        .tecnologia {
-       
-          border: 2px solid ${({ theme }) => theme.colors.textoPortada};
-          font-size: 0.9em;
-
-          font-weight: 600;
-          margin: 0.5em;
-          margin-left: 0;
-          margin-top: 0;
-          padding: 0.3em 1em;
-         
-          text-align:center;
-          color: ${({ theme }) => theme.colors.textoPortada};
-          
-
-        }
-      }
   }
 
 `;
