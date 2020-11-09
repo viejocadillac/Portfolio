@@ -18,9 +18,6 @@ const Nombre = styled.h1`
 const NavBar = ({
   className, toggleTheme, links, activeSection,
 }) => {
-  const SCROLL_DELAY = 150;
-  const showNombre = useToggleShowOn(SCROLL_DELAY, true);
-
   return (
     <Fade top>
     <header className={className}>
