@@ -5,8 +5,6 @@ import Fade from 'react-reveal/Fade';
 
 import Container from './Container';
 
-import { useToggleShowOn } from '../hooks';
-
 const Nombre = styled.h1`
     position: relative;
     margin: 0;
@@ -28,17 +26,16 @@ const NavBar = ({
         </div>
 
         <div className="flex">
-          
             <nav>
               <ul className="links">
 
                 {
-                  links.map((link) => {
+                  links.map((link, i) => {
                     let active;
                     if (link) active = activeSection === link.id;
 
                     return (
-                      <li style={link.display ? {} : { display: 'none' }}>
+                      <li key={`nav-bar-li-${i}`} style={link.display ? {} : { display: 'none' }}>
                         <NavLink ref={link.ref} to={`#${link.id}`} className={active ? 'nav-link nav-link-active' : 'nav-link'}>
                           {link.text}
                         </NavLink>
