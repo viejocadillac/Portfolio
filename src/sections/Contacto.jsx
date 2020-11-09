@@ -8,16 +8,26 @@ import Container from '../components/Container';
 
 const Contacto = ({ id, className, referencia }) => {
   const formulario = React.useRef();
+  const [buttonDisabled, setButtonDisabled] = React.useState(false);
+  const [mensaje, setMensaje] = React.useState('');
   const sendForm = (event) => {
     event.preventDefault();
     const data = new FormData(formulario.current);
+
+    setButtonDisabled(true);
+    setMensaje('Enviando...');
 
     fetch('https://usebasin.com/f/8cbe29ba9b2a', {
       method: 'POST',
       body: data,
     }).then((response) => {
-      console.log(response);
-    });
+      if (response.status === 200) {
+        setMensaje('Mensaje enviado!');
+      }
+    }).catch(() => setMensaje('Error al enviar.'))
+      .finally(() => {
+        setButtonDisabled(false);
+      });
   };
 
   return (
@@ -75,7 +85,8 @@ const Contacto = ({ id, className, referencia }) => {
                 classes={{ root: 'input-root' }}
                 required
               />
-              <Button type="submit" variant="contained" color="primary">Enviar</Button>
+              <Button disabled={buttonDisabled} type="submit" variant="contained" color="primary">Enviar</Button>
+              <p>{mensaje}</p>
             </form>
           </div>
         </Section.Body>
