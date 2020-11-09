@@ -1,7 +1,6 @@
 import {
   useLayoutEffect, useEffect, useState, useRef,
 } from 'react';
-import { setThemeCookie, parseCookies } from './utils';
 
 /**
  *
@@ -28,17 +27,16 @@ const useTheme = (theme1, theme2) => {
 
   const toggleTheme = () => {
     const newTheme = theme === theme1 ? theme2 : theme1;
-    // FIXME Cambiar el guardado en cookies por local storage
-    setThemeCookie(newTheme.name);
+    localStorage.setItem('theme', newTheme.name);
     setTheme(newTheme);
   };
 
   useLayoutEffect(() => {
-    const cookies = parseCookies();
-    if (cookies.modo === theme2.name) {
+    const themeSaved = localStorage.getItem('theme');
+    if (themeSaved === theme2.name) {
       setTheme(theme2);
     }
-  }, [setTheme]);
+  }, [setTheme, theme2, theme1]);
 
   return [theme, toggleTheme];
 };
@@ -69,6 +67,7 @@ const useIntersectionObserver = (options) => {
 
   useEffect(() => {
     elements.forEach((element) => observer.current.observe(element));
+    // eslint-disable-next-line
     return () => observer.current.disconnect();
   }, [elements]);
 
